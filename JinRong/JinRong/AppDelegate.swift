@@ -16,11 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        self.setupConfig()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainController()
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    func setupConfig() -> Void {
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

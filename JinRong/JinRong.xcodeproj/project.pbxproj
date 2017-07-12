@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8111F160424004C0B66 /* AppDelegate.swift */; };
-		1699F8171F160424004C0B66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1699F8151F160424004C0B66 /* Main.storyboard */; };
 		1699F8191F160424004C0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1699F8181F160424004C0B66 /* Assets.xcassets */; };
 		1699F81C1F160424004C0B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1699F81A1F160424004C0B66 /* LaunchScreen.storyboard */; };
 		1699F8271F160424004C0B66 /* JinRongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8261F160424004C0B66 /* JinRongTests.swift */; };
@@ -20,6 +19,8 @@
 		1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F85D1F160F9A004C0B66 /* BorrowController.swift */; };
 		1699F8601F160FAD004C0B66 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F85F1F160FAD004C0B66 /* ProfileController.swift */; };
 		1699F8621F160FEE004C0B66 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8611F160FEE004C0B66 /* BaseNavigationController.swift */; };
+		1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F86A1F162E5F004C0B66 /* UIImage(Extension).swift */; };
+		1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F86C1F16330E004C0B66 /* UIColor(extension).swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 /* Begin PBXFileReference section */
 		1699F80E1F160424004C0B66 /* JinRong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JinRong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1699F8111F160424004C0B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1699F8161F160424004C0B66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1699F8181F160424004C0B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1699F81B1F160424004C0B66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1699F81D1F160424004C0B66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +59,8 @@
 		1699F85D1F160F9A004C0B66 /* BorrowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowController.swift; sourceTree = "<group>"; };
 		1699F85F1F160FAD004C0B66 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		1699F8611F160FEE004C0B66 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		1699F86A1F162E5F004C0B66 /* UIImage(Extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage(Extension).swift"; sourceTree = "<group>"; };
+		1699F86C1F16330E004C0B66 /* UIColor(extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor(extension).swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +113,6 @@
 			children = (
 				1699F83F1F160C7B004C0B66 /* Classes */,
 				1699F8111F160424004C0B66 /* AppDelegate.swift */,
-				1699F8151F160424004C0B66 /* Main.storyboard */,
 				1699F8181F160424004C0B66 /* Assets.xcassets */,
 				1699F81A1F160424004C0B66 /* LaunchScreen.storyboard */,
 				1699F81D1F160424004C0B66 /* Info.plist */,
@@ -140,12 +141,15 @@
 		1699F83F1F160C7B004C0B66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1699F8501F160C7B004C0B66 /* Main(主控制器) */,
+				1699F84C1F160C7B004C0B66 /* LoginRegist(登录注册) */,
+				1699F8481F160C7B004C0B66 /* Borrow(借款) */,
 				1699F8401F160C7B004C0B66 /* Authentication(认证) */,
 				1699F8441F160C7B004C0B66 /* Bill(账单) */,
-				1699F8481F160C7B004C0B66 /* Borrow(借款) */,
-				1699F84C1F160C7B004C0B66 /* LoginRegist(登录注册) */,
-				1699F8501F160C7B004C0B66 /* Main(主控制器) */,
 				1699F8511F160C7B004C0B66 /* Profile(我的) */,
+				1699F8631F162979004C0B66 /* Category */,
+				1699F8641F162979004C0B66 /* Tools(工具) */,
+				1699F8651F162979004C0B66 /* Vender(第三方) */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -319,6 +323,29 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1699F8631F162979004C0B66 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				1699F86A1F162E5F004C0B66 /* UIImage(Extension).swift */,
+				1699F86C1F16330E004C0B66 /* UIColor(extension).swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		1699F8641F162979004C0B66 /* Tools(工具) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Tools(工具)";
+			sourceTree = "<group>";
+		};
+		1699F8651F162979004C0B66 /* Vender(第三方) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Vender(第三方)";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -431,7 +458,6 @@
 			files = (
 				1699F81C1F160424004C0B66 /* LaunchScreen.storyboard in Resources */,
 				1699F8191F160424004C0B66 /* Assets.xcassets in Resources */,
-				1699F8171F160424004C0B66 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +490,8 @@
 				1699F8581F160D56004C0B66 /* BaseController.swift in Sources */,
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
+				1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */,
+				1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,14 +527,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1699F8151F160424004C0B66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1699F8161F160424004C0B66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1699F81A1F160424004C0B66 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
