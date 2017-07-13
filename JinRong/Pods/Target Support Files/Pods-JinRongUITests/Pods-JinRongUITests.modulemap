@@ -1,0 +1,6 @@
+framework module Pods_JinRongUITests {
+  umbrella header "Pods-JinRongUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

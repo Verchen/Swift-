@@ -1,0 +1,6 @@
+framework module Pods_JinRong {
+  umbrella header "Pods-JinRong-umbrella.h"
+
+  export *
+  module * { export * }
+}
