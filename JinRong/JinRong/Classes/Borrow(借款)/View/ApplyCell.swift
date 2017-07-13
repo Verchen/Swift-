@@ -32,9 +32,9 @@ class ApplyCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-        self.setupUI()
-        self.setupLayout()
+        selectionStyle = .none
+        setupUI()
+        setupLayout()
     }
     
     func setupUI() -> Void {

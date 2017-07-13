@@ -22,6 +22,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         var table = UITableView(frame: CGRect(x: 0, y: self.segmentView.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - self.segmentView.frame.height - 64 - 49), style: .plain)
         table.delegate = self as UITableViewDelegate
         table.dataSource = self as UITableViewDataSource
+        table.separatorStyle = .none
         table.isHidden = true
         return table
     }()
@@ -41,11 +42,10 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "小咖借"
-        self.view.addSubview(segmentView)
-        self.view.addSubview(borrowTypeView)
-        self.view.addSubview(progressView)
-        
+        navigationItem.title = "小咖借"
+        view.addSubview(segmentView)
+        view.addSubview(borrowTypeView)
+        view.addSubview(progressView)
     }
     
     //MARK: - tableview代理方法
@@ -63,21 +63,18 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         
         switch tableView {
         case borrowTypeView:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ApplyCell")
             if cell == nil {
-                cell = ApplyCell(style: .default, reuseIdentifier: "cell")
+                cell = ApplyCell(style: .default, reuseIdentifier: "ApplyCell")
             }
             return cell!
         default:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ProgressCell")
             if cell == nil {
-                cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+                cell = ProgressCell(style: .default, reuseIdentifier: "ProgressCell")
             }
-            cell?.textLabel?.text = indexPath.row.description
             return cell!
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

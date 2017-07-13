@@ -22,6 +22,7 @@
 		1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F86A1F162E5F004C0B66 /* UIImage(Extension).swift */; };
 		1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F86C1F16330E004C0B66 /* UIColor(extension).swift */; };
 		1699F8711F1714FA004C0B66 /* ApplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8701F1714FA004C0B66 /* ApplyCell.swift */; };
+		1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8721F1760F9004C0B66 /* ProgressCell.swift */; };
 		2AF38017F462E457BA98EEF5 /* Pods_JinRongTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8F18E518BD2CAA2AEB357E /* Pods_JinRongTests.framework */; };
 		643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */; };
 		9F2EA565C967F1641111E2E1 /* Pods_JinRongUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */; };
@@ -66,6 +67,7 @@
 		1699F86A1F162E5F004C0B66 /* UIImage(Extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage(Extension).swift"; sourceTree = "<group>"; };
 		1699F86C1F16330E004C0B66 /* UIColor(extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor(extension).swift"; sourceTree = "<group>"; };
 		1699F8701F1714FA004C0B66 /* ApplyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyCell.swift; sourceTree = "<group>"; };
+		1699F8721F1760F9004C0B66 /* ProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JinRong.release.xcconfig"; path = "Pods/Target Support Files/Pods-JinRong/Pods-JinRong.release.xcconfig"; sourceTree = "<group>"; };
 		28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRongUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				1699F8701F1714FA004C0B66 /* ApplyCell.swift */,
+				1699F8721F1760F9004C0B66 /* ProgressCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
 				1699F8711F1714FA004C0B66 /* ApplyCell.swift in Sources */,
 				1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */,
+				1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */,
 				1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
