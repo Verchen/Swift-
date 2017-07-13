@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import SnapKit
 
 class ApplyCell: UITableViewCell {
     
     var containerView = UIView()
     
+    var levelIcon = UIImageView()
+    var levelText = UILabel()
+    
+    var verticalLine = UIImageView()
+    var numberTip = UILabel()
+    var moneyLabel = UILabel()
+    
+    var dateTime = UILabel()
+    var horizontalLine = UIImageView()
+    
+    var rightIcon = UIImageView()
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -20,11 +32,102 @@ class ApplyCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        self.selectionStyle = .none
         self.setupUI()
+        self.setupLayout()
     }
     
     func setupUI() -> Void {
-        print(self.containerView)
+        containerView.layer.borderColor = UIColor.theme.cgColor
+        containerView.layer.borderWidth = 1
+        containerView.layer.cornerRadius = 5.0
+        
+        levelIcon.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+        levelText.text = "LV1"
+        levelText.textAlignment = .center
+        levelText.textColor = UIColor.theme
+        
+        verticalLine.image = UIImage.colorImage(color: UIColor.theme)
+        
+        numberTip.text = "借款金额"
+        numberTip.textAlignment = .center
+        numberTip.textColor = UIColor.theme
+        moneyLabel.text = "700元"
+        moneyLabel.font = UIFont.systemFont(ofSize: 25.0)
+        moneyLabel.textAlignment = .center
+        moneyLabel.textColor = UIColor.theme
+        
+        dateTime.text = "14天"
+        dateTime.textColor = UIColor.theme
+        dateTime.textAlignment = .center
+        
+        horizontalLine.image = UIImage.colorImage(color: UIColor.theme)
+        
+        rightIcon.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+        
+        contentView.addSubview(containerView)
+        containerView.addSubview(levelIcon)
+        containerView.addSubview(levelText)
+        containerView.addSubview(verticalLine)
+        containerView.addSubview(numberTip)
+        containerView.addSubview(moneyLabel)
+        containerView.addSubview(dateTime)
+        containerView.addSubview(horizontalLine)
+        containerView.addSubview(rightIcon)
+    }
+    
+    func setupLayout() -> Void {
+        containerView.snp.makeConstraints { (make) in
+            make.top.equalTo(5)
+            make.left.equalTo(10)
+            make.bottom.equalTo(-5)
+            make.right.equalTo(-10)
+        }
+        
+        levelIcon.snp.makeConstraints { (make) in
+            make.left.top.equalTo(10)
+            make.width.height.equalTo(45)
+        }
+        
+        levelText.snp.makeConstraints { (make) in
+            make.top.equalTo(levelIcon.snp.bottom).offset(5)
+            make.left.right.equalTo(levelIcon)
+        }
+        
+        verticalLine.snp.makeConstraints { (make) in
+            make.left.equalTo(levelIcon.snp.right).offset(10)
+            make.width.equalTo(1)
+            make.top.bottom.equalTo(0)
+        }
+        
+        numberTip.snp.makeConstraints { (make) in
+            make.left.equalTo(verticalLine.snp.right).offset(15)
+            make.right.equalTo(horizontalLine.snp.left).offset(-15)
+            make.top.equalTo(15)
+        }
+        
+        moneyLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(numberTip.snp.bottom).offset(10)
+            make.left.right.equalTo(numberTip)
+        }
+        
+        rightIcon.snp.makeConstraints { (make) in
+            make.width.height.equalTo(40)
+            make.right.equalTo(-10)
+            make.centerY.equalTo(containerView)
+        }
+        
+        horizontalLine.snp.makeConstraints { (make) in
+            make.right.equalTo(rightIcon.snp.left).offset(-10)
+            make.centerY.equalTo(containerView).offset(10)
+            make.height.equalTo(1)
+            make.width.equalTo(70)
+        }
+        
+        dateTime.snp.makeConstraints { (make) in
+            make.bottom.equalTo(horizontalLine.snp.top).offset(-5)
+            make.left.right.equalTo(horizontalLine)
+        }
+        
     }
 }

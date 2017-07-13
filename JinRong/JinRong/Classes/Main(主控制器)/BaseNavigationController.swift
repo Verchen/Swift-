@@ -19,4 +19,24 @@ class BaseNavigationController: UINavigationController {
     }
 
 
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        
+        if childViewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true
+            let button = UIButton(type: .custom)
+            button.setImage(UIImage.init(named: "back_white"), for: .normal)
+            button.imageEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 0)
+            button.addTarget(self, action: #selector(BaseNavigationController.pop), for: .touchUpInside)
+            button.sizeToFit()
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+            self.interactivePopGestureRecognizer?.delegate = viewController as? UIGestureRecognizerDelegate
+        }
+        
+        super.pushViewController(viewController, animated: animated)
+    }
+    
+    func pop() -> Void {
+        self.popViewController(animated: true)
+    }
+    
 }
