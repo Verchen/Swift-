@@ -27,6 +27,7 @@
 		1699F8771F177A06004C0B66 /* UIButton(extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8761F177A06004C0B66 /* UIButton(extension).swift */; };
 		1699F8791F186A45004C0B66 /* SumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8781F186A45004C0B66 /* SumCell.swift */; };
 		1699F87B1F189FB5004C0B66 /* BillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F87A1F189FB5004C0B66 /* BillCell.swift */; };
+		1699F87D1F18B481004C0B66 /* RepaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F87C1F18B481004C0B66 /* RepaidCell.swift */; };
 		2AF38017F462E457BA98EEF5 /* Pods_JinRongTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8F18E518BD2CAA2AEB357E /* Pods_JinRongTests.framework */; };
 		643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */; };
 		9F2EA565C967F1641111E2E1 /* Pods_JinRongUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */; };
@@ -76,6 +77,7 @@
 		1699F8761F177A06004C0B66 /* UIButton(extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton(extension).swift"; sourceTree = "<group>"; };
 		1699F8781F186A45004C0B66 /* SumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SumCell.swift; sourceTree = "<group>"; };
 		1699F87A1F189FB5004C0B66 /* BillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillCell.swift; sourceTree = "<group>"; };
+		1699F87C1F18B481004C0B66 /* RepaidCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepaidCell.swift; sourceTree = "<group>"; };
 		251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JinRong.release.xcconfig"; path = "Pods/Target Support Files/Pods-JinRong/Pods-JinRong.release.xcconfig"; sourceTree = "<group>"; };
 		28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRongUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +248,7 @@
 			children = (
 				1699F8781F186A45004C0B66 /* SumCell.swift */,
 				1699F87A1F189FB5004C0B66 /* BillCell.swift */,
+				1699F87C1F18B481004C0B66 /* RepaidCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 			files = (
 				1699F8621F160FEE004C0B66 /* BaseNavigationController.swift in Sources */,
 				1699F8601F160FAD004C0B66 /* ProfileController.swift in Sources */,
+				1699F87D1F18B481004C0B66 /* RepaidCell.swift in Sources */,
 				1699F8561F160D13004C0B66 /* MainController.swift in Sources */,
 				1699F85C1F160F8A004C0B66 /* BillController.swift in Sources */,
 				1699F85A1F160F73004C0B66 /* AuthController.swift in Sources */,

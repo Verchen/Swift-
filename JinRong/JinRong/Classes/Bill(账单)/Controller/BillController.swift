@@ -74,13 +74,16 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
             }
             return cell!
         }else{
-            var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "RepaidCell")
             if cell == nil {
-                cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+                cell = RepaidCell(style: .default, reuseIdentifier: "RepaidCell")
             }
-            cell?.textLabel?.text = indexPath.row.description
             return cell!
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,7 +95,7 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
                 return 195
             }
         }else{
-            return 40
+            return 65
         }
     }
     
