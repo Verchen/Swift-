@@ -14,6 +14,7 @@ class BaseController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
 }

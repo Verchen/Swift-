@@ -8,28 +8,111 @@
 
 import UIKit
 
-class BillController: BaseController {
+class BillController: BaseController, UITableViewDelegate, UITableViewDataSource {
+    
+    lazy var segmentView: UISegmentedControl = {
+        var segment = UISegmentedControl(items: ["应还款", "已还款"])
+        segment.tintColor = UIColor.white
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(BillController.segmentChange(segment:)), for: .valueChanged)
+        return segment
+    }()
+    //应还列表
+    lazy var repayView: UITableView = {
+        var table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64 - 49), style: .grouped)
+        table.delegate = self
+        table.dataSource = self
+        table.separatorStyle = .none
+        return table
+    }()
+    //已还列表
+    lazy var repaidView: UITableView = {
+        var table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64 - 49), style: .plain)
+        table.delegate = self
+        table.dataSource = self
+        table.isHidden = true
+        return table
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationItem.titleView = segmentView
+        view.addSubview(repayView)
+        view.addSubview(repaidView)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK: - tableview代理方法
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView.isEqual(repayView) {
+            return 1 + 10
+        }else{
+            return 1
+        }
     }
-    */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView.isEqual(repayView) {
+            return 1
+        }else{
+            return 10
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.isEqual(repayView) {
+            if indexPath.section == 0 {
+                var cell = tableView.dequeueReusableCell(withIdentifier: "SumCell")
+                if cell == nil {
+                    cell = SumCell(style: .default, reuseIdentifier: "SumCell")
+                }
+                return cell!
+                
+            }
+            var cell = tableView.dequeueReusableCell(withIdentifier: "BillCell")
+            if cell == nil {
+                cell = BillCell(style: .default, reuseIdentifier: "BillCell")
+            }
+            return cell!
+        }else{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+            if cell == nil {
+                cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            }
+            cell?.textLabel?.text = indexPath.row.description
+            return cell!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.isEqual(repayView) {
+            switch indexPath.section {
+            case 0:
+                return 85
+            default:
+                return 195
+            }
+        }else{
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView.isEqual(repayView) {
+            return 20
+        }else{
+            return 0.001
+        }
+    }
+    
+    //MARK: - 事件方法
+    func segmentChange(segment: UISegmentedControl) -> Void {
+        if segment.selectedSegmentIndex == 0 {
+            repayView.isHidden = false
+            repaidView.isHidden = true
+        }else{
+            repayView.isHidden = true
+            repaidView.isHidden = false
+        }
+    }
 
 }
