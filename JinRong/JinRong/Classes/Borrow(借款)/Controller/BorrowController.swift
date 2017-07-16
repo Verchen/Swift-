@@ -83,7 +83,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         
         switch tableView {
         case borrowTypeView:
-            let vc = BaseController()
+            let vc = BorrowDetailVC()
             navigationController?.pushViewController(vc, animated: true)
             break
         default:
