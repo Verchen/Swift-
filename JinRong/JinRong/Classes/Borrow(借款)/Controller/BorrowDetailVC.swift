@@ -156,7 +156,7 @@ class BorrowDetailVC: BaseController {
         let hkDes = UILabel(frame: CGRect(x: 0, y: hkMoney.frame.maxY, width: huanKuanContai.frame.width, height: 20))
         hkDes.text = "(包含利息400元)"
         hkDes.textAlignment = .center
-        hkDes.font = UIFont.systemFont(ofSize: 15)
+        hkDes.font = UIFont.systemFont(ofSize: 14)
         hkDes.textColor = UIColor.init(valueRGB: 0x986515)
         huanKuanContai.addSubview(hkDes)
         
@@ -207,6 +207,7 @@ class BorrowDetailVC: BaseController {
         confirm.backgroundColor = UIColor.theme
         confirm.layer.cornerRadius = 5
         confirm.setTitle("确认", for: .normal)
+        confirm.addTarget(self, action: #selector(BorrowDetailVC.submit), for: .touchUpInside)
         scrollView.addSubview(confirm)
         
     
@@ -215,5 +216,10 @@ class BorrowDetailVC: BaseController {
     func agreementClick(button: UIButton) -> Void {
         button.isSelected = !button.isSelected
     }
+    
+    func submit() -> Void {
+        navigationController?.pushViewController(ApplyVC(), animated: true)
+    }
+    
     
 }

@@ -42,7 +42,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "小咖借"
+        navigationItem.title = "佳易贷"
         view.addSubview(segmentView)
         view.addSubview(borrowTypeView)
         view.addSubview(progressView)

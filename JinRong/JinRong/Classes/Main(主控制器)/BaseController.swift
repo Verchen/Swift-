@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class BaseController: UIViewController {
+class BaseController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()

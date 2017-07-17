@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AddressBook
 
 class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
@@ -62,7 +63,7 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
                 break
             case 2:
                 cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
-                cell?.textLabel?.text = "手机账单"
+                cell?.textLabel?.text = "手机通讯录"
                 break
             default:
                 cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
@@ -75,6 +76,18 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView .deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+        case 0:
+            navigationController?.pushViewController(UIViewController(), animated: true)
+        case 1:
+            navigationController?.pushViewController(UIViewController(), animated: true)
+        case 2:
+            queryABAuth()
+        case 3:
+            navigationController?.pushViewController(JDAuthVC(), animated: true)
+        default:
+            break
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -116,5 +129,24 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.001
+    }
+    
+    //私有方法
+    func queryABAuth() -> Void {
+        let status = ABAddressBookGetAuthorizationStatus()
+        if status == .notDetermined {
+            let abRef = ABAddressBookCreate()
+            
+            ABAddressBookRequestAccessWithCompletion(abRef as ABAddressBook, { (result, nil) in
+                if result {
+                    print("成功")
+                }else{
+                    print("失败")
+                }
+            })
+            
+            return
+        }
+        
     }
 }
