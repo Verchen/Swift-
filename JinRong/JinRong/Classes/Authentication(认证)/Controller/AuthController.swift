@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AddressBook
+import Contacts
 
 class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
@@ -131,22 +131,50 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         return 0.001
     }
     
-    //私有方法
+    //MARK: - 私有方法
+    
+    /// 获取通讯录权限
     func queryABAuth() -> Void {
-        let status = ABAddressBookGetAuthorizationStatus()
-        if status == .notDetermined {
-            let abRef = ABAddressBookCreate()
-            
-            ABAddressBookRequestAccessWithCompletion(abRef as ABAddressBook, { (result, nil) in
+        let status = CNContactStore.authorizationStatus(for: .contacts)
+        switch status {
+        case .notDetermined:
+            let store = CNContactStore()
+            store.requestAccess(for: .contacts, completionHandler: { (result, nil) in
                 if result {
-                    print("成功")
-                }else{
-                    print("失败")
+                    self.queryContacts()
                 }
             })
-            
-            return
+        case .denied:
+            print("denied")
+            let alert = UIAlertController(title: "获取通讯录", message: "请在“设置”中允许佳易贷访问通讯录", preferredStyle: .alert)
+            let action = UIAlertAction(title: "确定", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        case .restricted:
+            print("restricted")
+        case .authorized:
+            queryContacts()
         }
-        
+    }
+    
+    /// 获取通讯录信息
+    func queryContacts() -> Void {
+        let store = CNContactStore()
+        //获取所有的联系人
+        let keys = [CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey];
+        let request = CNContactFetchRequest.init(keysToFetch: keys as [CNKeyDescriptor]);
+        try?store.enumerateContacts(with: request, usingBlock: { (contact, iStop) in
+            //姓
+            let firstName = contact.familyName;
+            //名
+            let lastName = contact.givenName;
+            let phoneArr = contact.phoneNumbers;
+            for labelValue in phoneArr{
+                let cnlabelV = labelValue as CNLabeledValue;
+                let value = cnlabelV.value;
+                let phoneValue = value.stringValue;
+                print(firstName,lastName,phoneValue);
+            }
+        })
     }
 }
