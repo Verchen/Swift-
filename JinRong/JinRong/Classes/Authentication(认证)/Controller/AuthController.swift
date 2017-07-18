@@ -20,9 +20,9 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-     
+        view.addSubview(tableView)     
     }
+    
     
     //MARK: - tableview代理方法
     func numberOfSections(in tableView: UITableView) -> Int {

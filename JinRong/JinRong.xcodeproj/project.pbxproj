@@ -43,6 +43,7 @@
 		16ECD2E71F1D9FF300F39B0F /* IdentityAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */; };
 		16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E81F1DA1F700F39B0F /* ContactsCell.swift */; };
 		16ECD2EC1F1DAE1500F39B0F /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16ECD2EB1F1DAE1500F39B0F /* add@2x.png */; };
+		16ECD2F11F1DAF9500F39B0F /* AddContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2EF1F1DAF9500F39B0F /* AddContactsVC.swift */; };
 		2AF38017F462E457BA98EEF5 /* Pods_JinRongTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8F18E518BD2CAA2AEB357E /* Pods_JinRongTests.framework */; };
 		643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */; };
 		9F2EA565C967F1641111E2E1 /* Pods_JinRongUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */; };
@@ -108,6 +109,7 @@
 		16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityAuthVC.swift; sourceTree = "<group>"; };
 		16ECD2E81F1DA1F700F39B0F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		16ECD2EB1F1DAE1500F39B0F /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		16ECD2EF1F1DAF9500F39B0F /* AddContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsVC.swift; sourceTree = "<group>"; };
 		251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JinRong.release.xcconfig"; path = "Pods/Target Support Files/Pods-JinRong/Pods-JinRong.release.xcconfig"; sourceTree = "<group>"; };
 		28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRongUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +233,7 @@
 			children = (
 				1699F8591F160F73004C0B66 /* AuthController.swift */,
 				1699F8951F1C59D9004C0B66 /* ContactsVC.swift */,
+				16ECD2EF1F1DAF9500F39B0F /* AddContactsVC.swift */,
 				16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */,
 				16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */,
 				16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */,
@@ -775,6 +778,7 @@
 				16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */,
 				1699F85C1F160F8A004C0B66 /* BillController.swift in Sources */,
 				1699F88A1F19CCB3004C0B66 /* DottedView.swift in Sources */,
+				16ECD2F11F1DAF9500F39B0F /* AddContactsVC.swift in Sources */,
 				1699F85A1F160F73004C0B66 /* AuthController.swift in Sources */,
 				1699F8581F160D56004C0B66 /* BaseController.swift in Sources */,
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,

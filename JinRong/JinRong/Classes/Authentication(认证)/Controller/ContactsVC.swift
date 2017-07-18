@@ -61,7 +61,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func rightItemClick() -> Void {
-        
+        navigationController?.pushViewController(AddContactsVC(), animated: true)
     }
 
 }

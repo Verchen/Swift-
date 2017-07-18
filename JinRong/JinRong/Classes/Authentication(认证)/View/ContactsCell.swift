@@ -45,7 +45,7 @@ class ContactsCell: UITableViewCell {
         contentView.addSubview(phoneNum)
         
         update.text = "修改"
-        update.frame = CGRect(x: contentView.frame.width - 70, y: 0, width: 70, height: 70)
+        update.frame = CGRect(x: UIScreen.main.bounds.width - 70, y: 0, width: 70, height: 70)
         update.backgroundColor = UIColor.theme
         update.textAlignment = .center
         update.textColor = UIColor.white
