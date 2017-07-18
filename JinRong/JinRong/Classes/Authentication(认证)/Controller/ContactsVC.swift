@@ -14,15 +14,13 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         let table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), style: .grouped)
         table.delegate = self
         table.dataSource = self
-        
         return table
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "联系人"
-        
-        
+        setupConfig()
+        view.addSubview(tableView)
     }
     
     //MARK: - TABLE代理方法
@@ -33,12 +31,37 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "ContactsCell") as? ContactsCell
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = ContactsCell(style: .default, reuseIdentifier: "ContactsCell")
         }
-        cell?.textLabel?.text = indexPath.section.description
+
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.section)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+    
+    //MARK: - 私有方法
+    func setupConfig() -> Void {
+        title = "联系人"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "add.png").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(ContactsVC.rightItemClick))
+    }
+    
+    func rightItemClick() -> Void {
+        
     }
 
 }

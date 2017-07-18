@@ -38,6 +38,11 @@
 		1699F8961F1C59D9004C0B66 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8951F1C59D9004C0B66 /* ContactsVC.swift */; };
 		1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */; };
 		16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */; };
+		16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */; };
+		16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */; };
+		16ECD2E71F1D9FF300F39B0F /* IdentityAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */; };
+		16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E81F1DA1F700F39B0F /* ContactsCell.swift */; };
+		16ECD2EC1F1DAE1500F39B0F /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16ECD2EB1F1DAE1500F39B0F /* add@2x.png */; };
 		2AF38017F462E457BA98EEF5 /* Pods_JinRongTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8F18E518BD2CAA2AEB357E /* Pods_JinRongTests.framework */; };
 		643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */; };
 		9F2EA565C967F1641111E2E1 /* Pods_JinRongUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */; };
@@ -98,6 +103,11 @@
 		1699F8951F1C59D9004C0B66 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthVC.swift; sourceTree = "<group>"; };
 		16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthResultVC.swift; sourceTree = "<group>"; };
+		16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCardVC.swift; sourceTree = "<group>"; };
+		16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
+		16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityAuthVC.swift; sourceTree = "<group>"; };
+		16ECD2E81F1DA1F700F39B0F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
+		16ECD2EB1F1DAE1500F39B0F /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JinRong.release.xcconfig"; path = "Pods/Target Support Files/Pods-JinRong/Pods-JinRong.release.xcconfig"; sourceTree = "<group>"; };
 		28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRongUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +221,7 @@
 				1699F8411F160C7B004C0B66 /* Controller */,
 				1699F8421F160C7B004C0B66 /* Model */,
 				1699F8431F160C7B004C0B66 /* View */,
+				16ECD2EA1F1DAE0900F39B0F /* Source */,
 			);
 			path = "Authentication(认证)";
 			sourceTree = "<group>";
@@ -220,6 +231,9 @@
 			children = (
 				1699F8591F160F73004C0B66 /* AuthController.swift */,
 				1699F8951F1C59D9004C0B66 /* ContactsVC.swift */,
+				16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */,
+				16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */,
+				16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */,
 				1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */,
 				16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */,
 			);
@@ -237,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				1699F8741F1778B8004C0B66 /* BasicInfoCell.swift */,
+				16ECD2E81F1DA1F700F39B0F /* ContactsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,6 +445,14 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		16ECD2EA1F1DAE0900F39B0F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				16ECD2EB1F1DAE1500F39B0F /* add@2x.png */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		4C7218AAC3EC7F55AA1C7549 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +601,7 @@
 				1699F8921F1B6E38004C0B66 /* agree_select@2x.png in Resources */,
 				1699F8821F18D31B004C0B66 /* icon_setting@2x.png in Resources */,
 				1699F8801F18CCE5004C0B66 /* placeholder@2x.png in Resources */,
+				16ECD2EC1F1DAE1500F39B0F /* add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,8 +764,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16ECD2E71F1D9FF300F39B0F /* IdentityAuthVC.swift in Sources */,
 				1699F8841F19BB6A004C0B66 /* BorrowDetailVC.swift in Sources */,
 				1699F8621F160FEE004C0B66 /* BaseNavigationController.swift in Sources */,
+				16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */,
 				1699F8601F160FAD004C0B66 /* ProfileController.swift in Sources */,
 				1699F87D1F18B481004C0B66 /* RepaidCell.swift in Sources */,
 				1699F8561F160D13004C0B66 /* MainController.swift in Sources */,
@@ -752,10 +778,12 @@
 				1699F85A1F160F73004C0B66 /* AuthController.swift in Sources */,
 				1699F8581F160D56004C0B66 /* BaseController.swift in Sources */,
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,
+				16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */,
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
 				1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */,
 				1699F8751F1778B8004C0B66 /* BasicInfoCell.swift in Sources */,
 				1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */,
+				16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */,
 				1699F8711F1714FA004C0B66 /* ApplyCell.swift in Sources */,
 				1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */,
 				1699F8791F186A45004C0B66 /* SumCell.swift in Sources */,

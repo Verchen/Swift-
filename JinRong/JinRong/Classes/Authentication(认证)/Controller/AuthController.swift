@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 
-class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource {
+class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource, BasicCellDelegate {
     
     lazy var tableView: UITableView = {
         var table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), style: .grouped)
@@ -41,9 +41,10 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "BasicInfoCell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "BasicInfoCell") as? BasicInfoCell
             if cell == nil {
                 cell = BasicInfoCell(style: .default, reuseIdentifier: "BasicInfoCell")
+                cell?.delegate = self
             }
             return cell!
             
@@ -129,6 +130,20 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.001
+    }
+    
+    //MARK: - 自定义代理方法
+    func basicCell(_ cell: BasicInfoCell, didSelect type: BasicInfoType) {
+        switch type {
+        case .contacts:
+            navigationController?.pushViewController(ContactsVC(), animated: true)
+        case .bankCar:
+            navigationController?.pushViewController(BankCardVC(), animated: true)
+        case .phoneAuth:
+            navigationController?.pushViewController(PhoneAuthVC(), animated: true)
+        case .identityAuth:
+            navigationController?.pushViewController(IdentityAuthVC(), animated: true)
+        }
     }
     
     //MARK: - 私有方法

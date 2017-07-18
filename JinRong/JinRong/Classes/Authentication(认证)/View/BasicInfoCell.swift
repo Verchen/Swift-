@@ -9,7 +9,26 @@
 import UIKit
 import SnapKit
 
+public enum BasicInfoType : Int {
+    
+    case contacts
+    
+    case bankCar
+    
+    case phoneAuth
+    
+    case identityAuth
+}
+
+
+protocol BasicCellDelegate: NSObjectProtocol {
+    func basicCell(_ cell: BasicInfoCell, didSelect type: BasicInfoType)
+}
+
 class BasicInfoCell: UITableViewCell {
+    
+    weak open var delegate: BasicCellDelegate?
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,7 +72,7 @@ class BasicInfoCell: UITableViewCell {
     }
     
     func clickItem(tap: UITapGestureRecognizer) -> Void {
-        
+        delegate?.basicCell(self, didSelect: BasicInfoType(rawValue: (tap.view?.tag)!)!)
     }
 
 }
