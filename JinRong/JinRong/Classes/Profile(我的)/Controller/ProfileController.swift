@@ -110,17 +110,14 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: - 私有方法
     func setupConfig() -> Void {
-        let button = UIButton(type: .custom)
-        button.setImage(#imageLiteral(resourceName: "icon_setting.png"), for: .normal)
-        button.sizeToFit()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_setting.png").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(ProfileController.settingClick))
     }
     
     //MARK: - 事件方法
     func logout() -> Void {
-        
+        navigationController?.pushViewController(LoginVC(), animated: true)
     }
-
+    func settingClick() -> Void {
+        navigationController?.pushViewController(SettingVC(), animated: true)
+    }
 }

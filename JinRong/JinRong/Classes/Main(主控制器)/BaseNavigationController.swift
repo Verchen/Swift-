@@ -13,9 +13,10 @@ class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.navigationBar.setBackgroundImage(UIImage.colorImage(color: .theme), for: .default)
-        self.navigationBar.shadowImage = UIImage.colorImage(color: .clear)
-        
+        navigationBar.setBackgroundImage(UIImage.colorImage(color: .theme), for: .default)
+        navigationBar.shadowImage = UIImage.colorImage(color: .clear)
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)]
+
     }
 
 
@@ -23,12 +24,7 @@ class BaseNavigationController: UINavigationController {
         
         if childViewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
-            let button = UIButton(type: .custom)
-            button.setImage(UIImage.init(named: "back_white"), for: .normal)
-            button.imageEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 0)
-            button.addTarget(self, action: #selector(BaseNavigationController.pop), for: .touchUpInside)
-            button.sizeToFit()
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back_white").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(BaseNavigationController.pop))
             self.interactivePopGestureRecognizer?.delegate = viewController as? UIGestureRecognizerDelegate
         }
         

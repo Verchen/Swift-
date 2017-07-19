@@ -45,6 +45,9 @@
 		16ECD2F11F1DAF9500F39B0F /* AddContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2EF1F1DAF9500F39B0F /* AddContactsVC.swift */; };
 		16ECD2F41F1DF58100F39B0F /* BankCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2F31F1DF58100F39B0F /* BankCardCell.swift */; };
 		16ECD2F61F1EF1DC00F39B0F /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16ECD2F51F1EF1DC00F39B0F /* placeholder@2x.png */; };
+		16ECD2F81F1EF96700F39B0F /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2F71F1EF96700F39B0F /* SettingVC.swift */; };
+		16ECD2FA1F1F04EA00F39B0F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2F91F1F04EA00F39B0F /* LoginVC.swift */; };
+		16ECD2FC1F1F053400F39B0F /* RegistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2FB1F1F053400F39B0F /* RegistVC.swift */; };
 		2AF38017F462E457BA98EEF5 /* Pods_JinRongTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8F18E518BD2CAA2AEB357E /* Pods_JinRongTests.framework */; };
 		643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */; };
 		9F2EA565C967F1641111E2E1 /* Pods_JinRongUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */; };
@@ -112,6 +115,9 @@
 		16ECD2EF1F1DAF9500F39B0F /* AddContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsVC.swift; sourceTree = "<group>"; };
 		16ECD2F31F1DF58100F39B0F /* BankCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCardCell.swift; sourceTree = "<group>"; };
 		16ECD2F51F1EF1DC00F39B0F /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		16ECD2F71F1EF96700F39B0F /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		16ECD2F91F1F04EA00F39B0F /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		16ECD2FB1F1F053400F39B0F /* RegistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistVC.swift; sourceTree = "<group>"; };
 		251D52C0BBCFB2067ED48A2F /* Pods_JinRong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JinRong.release.xcconfig"; path = "Pods/Target Support Files/Pods-JinRong/Pods-JinRong.release.xcconfig"; sourceTree = "<group>"; };
 		28D71332E35CA48954E8402A /* Pods_JinRongUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JinRongUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +354,8 @@
 		1699F84D1F160C7B004C0B66 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				16ECD2F91F1F04EA00F39B0F /* LoginVC.swift */,
+				16ECD2FB1F1F053400F39B0F /* RegistVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -391,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				1699F85F1F160FAD004C0B66 /* ProfileController.swift */,
+				16ECD2F71F1EF96700F39B0F /* SettingVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -770,6 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16ECD2FA1F1F04EA00F39B0F /* LoginVC.swift in Sources */,
 				16ECD2E71F1D9FF300F39B0F /* IdentityAuthVC.swift in Sources */,
 				1699F8841F19BB6A004C0B66 /* BorrowDetailVC.swift in Sources */,
 				1699F8621F160FEE004C0B66 /* BaseNavigationController.swift in Sources */,
@@ -777,6 +787,7 @@
 				1699F8601F160FAD004C0B66 /* ProfileController.swift in Sources */,
 				1699F87D1F18B481004C0B66 /* RepaidCell.swift in Sources */,
 				1699F8561F160D13004C0B66 /* MainController.swift in Sources */,
+				16ECD2F81F1EF96700F39B0F /* SettingVC.swift in Sources */,
 				1699F8961F1C59D9004C0B66 /* ContactsVC.swift in Sources */,
 				16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */,
 				1699F85C1F160F8A004C0B66 /* BillController.swift in Sources */,
@@ -784,6 +795,7 @@
 				16ECD2F11F1DAF9500F39B0F /* AddContactsVC.swift in Sources */,
 				1699F85A1F160F73004C0B66 /* AuthController.swift in Sources */,
 				1699F8581F160D56004C0B66 /* BaseController.swift in Sources */,
+				16ECD2FC1F1F053400F39B0F /* RegistVC.swift in Sources */,
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,
 				16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */,
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
