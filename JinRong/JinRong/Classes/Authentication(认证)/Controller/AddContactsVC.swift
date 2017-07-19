@@ -19,6 +19,7 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "添加联系人"
         let rightItem = UIBarButtonItem(title: "提交", style: .done, target: self, action: #selector(AddContactsVC.commit))
         rightItem.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = rightItem

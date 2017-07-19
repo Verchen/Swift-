@@ -12,6 +12,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "登录"
         setupUI()
     }
     
