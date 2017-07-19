@@ -20,8 +20,7 @@ class ApplyVC: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "申请成功"
-        navigationItem.leftBarButtonItem = nil
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView())
         setupUI()
     }
     

@@ -33,7 +33,7 @@ class BorrowDetailVC: BaseController {
 
         let width: CGFloat = UIScreen.main.bounds.width
         
-        let container = DottedBoardView()//(frame: CGRect(x: 30, y: 30, width: width - 60, height: 200))
+        let container = DottedBoardView()
         scrollView.addSubview(container)
         container.snp.makeConstraints { (make) in
             make.top.equalTo(30)
@@ -42,7 +42,7 @@ class BorrowDetailVC: BaseController {
             make.height.greaterThanOrEqualTo(200)
         }
         
-        let level = UILabel()//(frame: CGRect(x: 10, y: 10, width: 100, height: 20))
+        let level = UILabel()
         level.text = "LV1"
         level.textColor = UIColor.theme
         container.addSubview(level)
@@ -53,7 +53,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let itemWidth = (width - 80) / 3
-        let daozhangTip = UILabel()//(frame: CGRect(x: 10, y: level.frame.maxY + 5, width: itemWidth, height: 20))
+        let daozhangTip = UILabel()
         daozhangTip.text = "到账金额"
         daozhangTip.textAlignment = .center
         daozhangTip.font = UIFont.systemFont(ofSize: 14)
@@ -65,7 +65,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let daoMoney = UILabel()//(frame: CGRect(x: 10, y: daozhangTip.frame.maxY + 5, width: itemWidth, height: 25))
+        let daoMoney = UILabel()
         daoMoney.text = "850元"
         daoMoney.font = UIFont.systemFont(ofSize: 20)
         daoMoney.textColor = UIColor.init(valueRGB: 0x986515)
@@ -78,7 +78,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(25)
         }
         
-        let line = UIView()//(frame: CGRect(x: daozhangTip.frame.maxX, y: level.frame.maxY, width: 1, height: 60))
+        let line = UIView()
         line.backgroundColor = UIColor.theme
         container.addSubview(line)
         line.snp.makeConstraints { (make) in
@@ -88,7 +88,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(60)
         }
         
-        let fuwuTip = UILabel()//(frame: CGRect(x: line.frame.maxX, y: daozhangTip.frame.minY, width: itemWidth, height: 20))
+        let fuwuTip = UILabel()
         fuwuTip.text = "服务费"
         fuwuTip.textAlignment = .center
         fuwuTip.font = UIFont.systemFont(ofSize: 14)

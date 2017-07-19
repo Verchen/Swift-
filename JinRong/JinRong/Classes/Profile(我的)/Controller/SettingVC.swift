@@ -17,6 +17,7 @@ class SettingVC: BaseController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setupUI() -> Void {
+        title = "设置"
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.left.top.right.bottom.equalTo(0)

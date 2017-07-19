@@ -16,7 +16,7 @@ class BaseController: UIViewController, NVActivityIndicatorViewable {
     
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
-        navigationItem.hidesBackButton = true
+//        navigationItem.hidesBackButton = true
 
     }
 
