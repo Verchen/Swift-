@@ -49,67 +49,127 @@ class ProgressCell: UITableViewCell {
     
     func setupUI() -> Void {
         let height:CGFloat = 25
-        let width:CGFloat = UIScreen.main.bounds.width
         
-        line.frame = CGRect(x: 0, y: 10, width: width, height: 1)
         line.backgroundColor = UIColor.theme
         contentView.addSubview(line)
+        line.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(10)
+            make.height.equalTo(1)
+        }
         
-        totalLabel.frame = CGRect(x: 10, y: 10, width: width, height: height)
         totalLabel.text = "借款金额60000元   |   14天期限"
         contentView.addSubview(totalLabel)
+        totalLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(10)
+            make.top.equalTo(10)
+            make.height.equalTo(height)
+        }
         
-        bjContainer.frame = CGRect(x: 0, y: totalLabel.frame.maxY, width: width, height: height)
         bjContainer.image = UIImage.colorImage(color: UIColor.theme)
         contentView.addSubview(bjContainer)
+        bjContainer.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(totalLabel.snp.bottom)
+            make.height.equalTo(height)
+        }
         
-        bj.frame = CGRect(x: 10, y: 0, width: 50, height: height)
         bj.textColor = UIColor.white
         bj.text = "本金"
         bjContainer.addSubview(bj)
+        bj.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(0)
+            make.width.equalTo(50)
+            make.height.equalTo(height)
+        }
         
-        bjValue.frame = CGRect(x: 100, y: 0, width: width - 110, height: height)
         bjValue.textAlignment = .right
         bjValue.textColor = UIColor.white
         bjValue.text = "50000"
         bjContainer.addSubview(bjValue)
+        bjValue.snp.makeConstraints { (make) in
+            make.right.equalTo(-10)
+            make.top.equalTo(0)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        lx.frame = CGRect(x: 10, y: bjContainer.frame.maxY, width: 100, height: height)
         lx.text = "利息"
         contentView.addSubview(lx)
+        lx.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(bjContainer.snp.bottom)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        lxValue.frame = CGRect(x: 100, y: bjContainer.frame.maxY, width: width - 110, height: height)
         lxValue.text = "1000"
         lxValue.textAlignment = .right
         contentView.addSubview(lxValue)
+        lxValue.snp.makeConstraints { (make) in
+            make.right.equalTo(-10)
+            make.top.equalTo(bjContainer.snp.bottom)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        hkfsContainer.frame = CGRect(x: 0, y: lx.frame.maxY, width: width, height: height)
         hkfsContainer.image = UIImage.colorImage(color: UIColor.theme)
         contentView.addSubview(hkfsContainer)
+        hkfsContainer.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(lx.snp.bottom)
+            make.height.equalTo(height)
+        }
         
-        hkfs.frame = CGRect(x: 10, y: 0, width: 100, height: height)
         hkfs.textColor = UIColor.white
         hkfs.text = "还款方式"
         hkfsContainer.addSubview(hkfs)
+        hkfs.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(0)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        hkfsValue.frame = CGRect(x: 100, y: 0, width: width - 110, height: height)
         hkfsValue.textColor = UIColor.white
         hkfsValue.textAlignment = .right
         hkfsValue.text = "等额本金"
         hkfsContainer.addSubview(hkfsValue)
+        hkfsValue.snp.makeConstraints { (make) in
+            make.right.equalTo(-10)
+            make.top.equalTo(0)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        zt.frame = CGRect(x: 10, y: hkfsContainer.frame.maxY, width: 100, height: height)
         zt.text = "状态"
         contentView.addSubview(zt)
+        zt.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(hkfsContainer.snp.bottom)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        ztValue.frame = CGRect(x: 100, y: hkfsContainer.frame.maxY, width: width - 110, height: height)
         ztValue.text = "审核中"
         ztValue.textAlignment = .right
         contentView.addSubview(ztValue)
+        ztValue.snp.makeConstraints { (make) in
+            make.right.equalTo(-10)
+            make.top.equalTo(hkfsContainer.snp.bottom)
+            make.width.equalTo(100)
+            make.height.equalTo(height)
+        }
         
-        cancelButton.frame = CGRect(x: 0, y: zt.frame.maxY, width: width, height: 1.5 * height)
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.setBackgroundImage(UIImage.colorImage(color: UIColor.theme), for: .normal)
         contentView.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(zt.snp.bottom)
+            make.height.equalTo(1.5*height)
+            make.bottom.equalTo(-20)
+        }
     }
 }

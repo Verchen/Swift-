@@ -11,7 +11,7 @@ import UIKit
 class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSource {
 
     lazy var tableView: UITableView = {
-        let table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64 - 49), style: .grouped)
+        let table = UITableView(frame: CGRect.zero, style: .grouped)
         table.delegate = self
         table.dataSource = self
         return table
@@ -22,7 +22,9 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         setupConfig()
         view.addSubview(tableView)
         
+        setupLayout()
     }
+    
     
     //MARK: - tableview代理方法
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,9 +66,13 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         let header = UIView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
         header.backgroundColor = UIColor.white
         
-        let background = UIView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80))
+        let background = UIView()
         background.backgroundColor = UIColor.theme
         header.addSubview(background)
+        background.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(0)
+            make.height.equalTo(80)
+        }
         
         let avator = UIImageView(frame: CGRect.init(x: 20, y: 20, width: 80, height: 80))
         avator.layer.cornerRadius = 40
@@ -76,11 +82,17 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         avator.layer.borderWidth = 2
         header.addSubview(avator)
         
-        let name = UILabel(frame: CGRect.init(x: avator.frame.maxX + 10, y: background.frame.maxY - 30, width: UIScreen.main.bounds.width - 120, height: 30))
+        let name = UILabel()
         name.font = UIFont.systemFont(ofSize: 20)
         name.text = "叫我乔哥就好了"
         name.textColor = UIColor.white
         header.addSubview(name)
+        name.snp.makeConstraints { (make) in
+            make.left.equalTo(avator.snp.right).offset(10)
+            make.top.equalTo(background.snp.bottom).offset(-30)
+            make.right.equalTo(-20)
+            make.height.equalTo(30)
+        }
         
         return header
     }
@@ -90,14 +102,16 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         footer.backgroundColor = UIColor(valueRGB: 0xEFEFF4)
         
         let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 20, width: footer.frame.width, height: 40)
         button.setTitle("退出登录", for: .normal)
         button.backgroundColor = UIColor.theme
         button.addTarget(self, action: #selector(ProfileController.logout), for: .touchUpInside)
         footer.addSubview(button)
-        
+        button.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(20)
+            make.height.equalTo(40)
+        }
         return footer
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -111,6 +125,11 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
     //MARK: - 私有方法
     func setupConfig() -> Void {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_setting.png").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(ProfileController.settingClick))
+    }
+    func setupLayout() -> Void {
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view).inset(UIEdgeInsetsMake(0, 0, 49, 0))
+        }
     }
     
     //MARK: - 事件方法

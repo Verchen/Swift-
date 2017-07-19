@@ -11,7 +11,7 @@ import UIKit
 class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
     lazy var borrowTypeView: UITableView = {
-        var table = UITableView(frame: CGRect(x: 0, y: self.segmentView.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - self.segmentView.frame.height - 64 - 49), style: .plain)
+        var table = UITableView(frame: CGRect.zero, style: .plain)
         table.delegate = self as UITableViewDelegate
         table.dataSource = self as UITableViewDataSource
         table.separatorStyle = .none
@@ -19,7 +19,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     }()
     
     lazy var progressView: UITableView = {
-        var table = UITableView(frame: CGRect(x: 0, y: self.segmentView.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - self.segmentView.frame.height - 64 - 49), style: .plain)
+        var table = UITableView(frame: CGRect.zero, style: .plain)
         table.delegate = self as UITableViewDelegate
         table.dataSource = self as UITableViewDataSource
         table.separatorStyle = .none
@@ -30,13 +30,15 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     lazy var segmentView: UIView = {
         var segmentView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         segmentView.backgroundColor = UIColor.theme
-        var segment = UISegmentedControl(items: ["申请借款", "进度查询"])
-        segment.addTarget(self, action: #selector(BorrowController.segmentChange(segment:)), for: .valueChanged)
-        segment.tintColor = UIColor.white
-        segment.selectedSegmentIndex = 0;
-        segmentView.addSubview(segment)
-        segment.center = segmentView.center
         return segmentView
+    }()
+    
+    lazy var segment: UISegmentedControl = {
+        let segm = UISegmentedControl(items: ["申请借款", "进度查询"])
+        segm.addTarget(self, action: #selector(BorrowController.segmentChange(segment:)), for: .valueChanged)
+        segm.tintColor = UIColor.white
+        segm.selectedSegmentIndex = 0;
+        return segm
     }()
     
 
@@ -44,8 +46,29 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         navigationItem.title = "佳易贷"
         view.addSubview(segmentView)
+        segmentView.addSubview(segment)
         view.addSubview(borrowTypeView)
         view.addSubview(progressView)
+        setupLayout()
+    }
+    func setupLayout() -> Void {
+        segmentView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(0)
+            make.height.equalTo(40)
+        }
+        segment.snp.makeConstraints { (make) in
+            make.center.equalTo(segmentView)
+        }
+        borrowTypeView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(segmentView.snp.bottom)
+            make.bottom.equalTo(-49)
+        }
+        progressView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(segmentView.snp.bottom)
+            make.bottom.equalTo(-49)
+        }
     }
     
     //MARK: - tableview代理方法

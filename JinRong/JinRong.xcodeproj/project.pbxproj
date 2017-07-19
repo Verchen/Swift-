@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
 		1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8111F160424004C0B66 /* AppDelegate.swift */; };
 		1699F8191F160424004C0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1699F8181F160424004C0B66 /* Assets.xcassets */; };
 		1699F81C1F160424004C0B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1699F81A1F160424004C0B66 /* LaunchScreen.storyboard */; };
@@ -71,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
 		1699F80E1F160424004C0B66 /* JinRong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JinRong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1699F8111F160424004C0B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1699F8181F160424004C0B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				1699F8701F1714FA004C0B66 /* ApplyCell.swift */,
 				1699F8721F1760F9004C0B66 /* ProgressCell.swift */,
 				1699F8891F19CCB3004C0B66 /* DottedView.swift */,
+				167BA8371F1F687A006A6B9D /* DottedBoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				1699F8961F1C59D9004C0B66 /* ContactsVC.swift in Sources */,
 				16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */,
 				1699F85C1F160F8A004C0B66 /* BillController.swift in Sources */,
+				167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */,
 				1699F88A1F19CCB3004C0B66 /* DottedView.swift in Sources */,
 				16ECD2F11F1DAF9500F39B0F /* AddContactsVC.swift in Sources */,
 				1699F85A1F160F73004C0B66 /* AuthController.swift in Sources */,

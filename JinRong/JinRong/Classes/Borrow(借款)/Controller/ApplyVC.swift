@@ -20,36 +20,57 @@ class ApplyVC: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "申请成功"
-        navigationItem.leftBarButtonItem?.customView?.isHidden = true
+        navigationItem.leftBarButtonItem = nil
         
         setupUI()
     }
     
     func setupUI() -> Void {
-        let image = UIImageView(image: #imageLiteral(resourceName: "tabbar_home_highlighted"))
-        image.frame = CGRect(x: (view.frame.width - 200)/2, y: 30, width: 200, height: 200)
-        view.addSubview(image)
         
-        let label = UILabel(frame: CGRect(x: 50, y: image.frame.maxY + 20, width: view.frame.width - 100, height: 50))
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        let image = UIImageView(image: #imageLiteral(resourceName: "placeholder.png"))
+        scrollView.addSubview(image)
+        image.snp.makeConstraints { (make) in
+            make.top.equalTo(30)
+            make.width.height.equalTo(200)
+            make.centerX.equalTo(scrollView)
+        }
+        
+        let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
         label.text = "您的借款已提交申请\n系统会在1-2小时内审核完成"
-        view.addSubview(label)
+        scrollView.addSubview(label)
+        label.snp.makeConstraints { (make) in
+            make.top.equalTo(image.snp.bottom).offset(20)
+            make.width.equalTo(view.frame.width - 100)
+            make.height.equalTo(50)
+            make.centerX.equalTo(scrollView)
+        }
         
         let button = UIButton(type: .custom)
         button.setTitle("查看申请进度", for: .normal)
-        button.frame = CGRect(x: (view.frame.width - 250)/2, y: label.frame.maxY + 20, width: 250, height: 35)
         button.backgroundColor = UIColor.theme
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(ApplyVC.queryProgress), for: .touchUpInside)
-        view.addSubview(button)
-        
+        scrollView.addSubview(button)
+        button.snp.makeConstraints { (make) in
+            make.top.equalTo(label.snp.bottom).offset(20)
+            make.width.equalTo(view.frame.width - 40)
+            make.height.equalTo(45)
+            make.centerX.equalTo(scrollView)
+            make.bottom.equalTo(-30)
+        }
     }
     
     func queryProgress() -> Void {
         navigationController?.popToRootViewController(animated: true)
     }
-    
-    
-    
+
 }

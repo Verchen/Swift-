@@ -16,7 +16,6 @@ class BaseNavigationController: UINavigationController {
         navigationBar.setBackgroundImage(UIImage.colorImage(color: .theme), for: .default)
         navigationBar.shadowImage = UIImage.colorImage(color: .clear)
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)]
-
     }
 
 
@@ -24,7 +23,9 @@ class BaseNavigationController: UINavigationController {
         
         if childViewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back_white").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(BaseNavigationController.pop))
+            let item = UIBarButtonItem(image: #imageLiteral(resourceName: "back_white").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(BaseNavigationController.pop))
+            
+            viewController.navigationItem.leftBarButtonItem = item
             self.interactivePopGestureRecognizer?.delegate = viewController as? UIGestureRecognizerDelegate
         }
         
