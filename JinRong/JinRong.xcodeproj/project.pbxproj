@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
+		167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8391F2099B7006A6B9D /* SMSButton.swift */; };
 		1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8111F160424004C0B66 /* AppDelegate.swift */; };
 		1699F8191F160424004C0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1699F8181F160424004C0B66 /* Assets.xcassets */; };
 		1699F81C1F160424004C0B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1699F81A1F160424004C0B66 /* LaunchScreen.storyboard */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
+		167BA8391F2099B7006A6B9D /* SMSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSButton.swift; sourceTree = "<group>"; };
 		1699F80E1F160424004C0B66 /* JinRong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JinRong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1699F8111F160424004C0B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1699F8181F160424004C0B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 		1699F84F1F160C7B004C0B66 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				167BA8391F2099B7006A6B9D /* SMSButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,
 				16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */,
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
+				167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */,
 				1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */,
 				1699F8751F1778B8004C0B66 /* BasicInfoCell.swift in Sources */,
 				1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */,

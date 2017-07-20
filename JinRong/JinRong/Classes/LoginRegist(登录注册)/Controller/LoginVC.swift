@@ -106,7 +106,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
         navigationController?.popViewController(animated: true)
     }
     func registClick() -> Void {
-        navigationController?.pushViewController(BaseController(), animated: true)
+        navigationController?.pushViewController(RegistVC(), animated: true)
     }
     func forgetClick() -> Void {
         navigationController?.pushViewController(BaseController(), animated: true)

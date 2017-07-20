@@ -11,7 +11,7 @@ import UIKit
 class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
 
     lazy var tableView: UITableView = {
-        let table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), style: .grouped)
+        let table = UITableView(frame: CGRect.zero, style: .grouped)
         table.delegate = self
         table.dataSource = self
         return table
@@ -21,6 +21,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         super.viewDidLoad()
         setupConfig()
         view.addSubview(tableView)
+        layoutSubviews()
     }
     
     //MARK: - TABLE代理方法
@@ -62,6 +63,12 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     
     func rightItemClick() -> Void {
         navigationController?.pushViewController(AddContactsVC(), animated: true)
+    }
+    
+    func layoutSubviews() -> Void {
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
     }
 
 }

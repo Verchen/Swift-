@@ -12,7 +12,7 @@ import Contacts
 class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource, BasicCellDelegate {
     
     lazy var tableView: UITableView = {
-        var table = UITableView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64), style: .grouped)
+        var table = UITableView(frame: CGRect.zero, style: .grouped)
         table.delegate = self
         table.dataSource = self
         return table
@@ -20,7 +20,8 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)     
+        view.addSubview(tableView)
+        layoutSubviews()
     }
     
     
@@ -117,7 +118,7 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return UIScreen.main.bounds.width / 4.0
+            return tableView.bounds.width / 4.0
         default:
             return 44
         }
@@ -147,6 +148,12 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
     }
     
     //MARK: - 私有方法
+    
+    func layoutSubviews() -> Void {
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view).inset(UIEdgeInsetsMake(0, 0, 49, 0))
+        }
+    }
     
     /// 获取通讯录权限
     func queryABAuth() -> Void {
