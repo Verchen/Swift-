@@ -13,7 +13,7 @@ class JDAuthResultVC: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "认证结果"
-        navigationItem.leftBarButtonItem?.customView?.isHidden = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: UIView())
         
         setupUI()
         

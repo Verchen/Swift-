@@ -14,6 +14,8 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
         var segment = UISegmentedControl(items: ["应还款", "已还款"])
         segment.tintColor = UIColor.white
         segment.selectedSegmentIndex = 0
+        segment.setWidth(120, forSegmentAt: 0)
+        segment.setWidth(120, forSegmentAt: 1)
         segment.addTarget(self, action: #selector(BillController.segmentChange(segment:)), for: .valueChanged)
         return segment
     }()

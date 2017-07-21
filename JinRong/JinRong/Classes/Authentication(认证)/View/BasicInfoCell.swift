@@ -44,7 +44,7 @@ class BasicInfoCell: UITableViewCell {
         let width:CGFloat = UIScreen.main.bounds.width / 4
         let height = width
         
-        let images = ["tabbar_discover_highlighted", "tabbar_home_highlighted", "tabbar_message_center_highlighted", "tabbar_profile_highlighted"]
+        let images = ["contacts", "bank", "phone", "shenfen"]
         let titles = ["联系人", "银行卡", "手机实名", "身份认证"]
         
         for i in 0...3 {

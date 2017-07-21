@@ -28,13 +28,15 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     }()
     
     lazy var segmentView: UIView = {
-        var segmentView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
+        var segmentView = UIView()
         segmentView.backgroundColor = UIColor.theme
         return segmentView
     }()
     
     lazy var segment: UISegmentedControl = {
         let segm = UISegmentedControl(items: ["申请借款", "进度查询"])
+        segm.setWidth(120, forSegmentAt: 0)
+        segm.setWidth(120, forSegmentAt: 1)
         segm.addTarget(self, action: #selector(BorrowController.segmentChange(segment:)), for: .valueChanged)
         segm.tintColor = UIColor.white
         segm.selectedSegmentIndex = 0;
@@ -54,7 +56,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     func setupLayout() -> Void {
         segmentView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(0)
-            make.height.equalTo(40)
+            make.height.equalTo(45)
         }
         segment.snp.makeConstraints { (make) in
             make.center.equalTo(segmentView)
@@ -76,7 +78,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case borrowTypeView:
-            return 50
+            return 5
         default:
             return 50
         }
@@ -86,9 +88,16 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         
         switch tableView {
         case borrowTypeView:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "ApplyCell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ApplyCell") as? ApplyCell
             if cell == nil {
                 cell = ApplyCell(style: .default, reuseIdentifier: "ApplyCell")
+            }
+            if indexPath.row == 0 {
+                cell?.levelIcon.image = #imageLiteral(resourceName: "lock_open.png")
+                cell?.lockView.isHidden = true
+            }else{
+                cell?.levelIcon.image = #imageLiteral(resourceName: "lock.png")
+                cell?.lockView.isHidden = false
             }
             return cell!
         default:
@@ -102,13 +111,12 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         switch tableView {
         case borrowTypeView:
-            let vc = BorrowDetailVC()
-            navigationController?.pushViewController(vc, animated: true)
-            break
+            if indexPath.row == 0 {
+                let vc = BorrowDetailVC()
+                navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }

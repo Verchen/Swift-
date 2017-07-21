@@ -25,6 +25,8 @@ class ApplyCell: UITableViewCell {
     
     var rightIcon = UIImageView()
     
+    var lockView = UIView()
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,8 +43,9 @@ class ApplyCell: UITableViewCell {
         containerView.layer.borderColor = UIColor.theme.cgColor
         containerView.layer.borderWidth = 1
         containerView.layer.cornerRadius = 5.0
+        containerView.clipsToBounds = true
         
-        levelIcon.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+        levelIcon.image = #imageLiteral(resourceName: "lock.png")
         levelText.text = "LV1"
         levelText.textAlignment = .center
         levelText.textColor = UIColor.theme
@@ -63,7 +66,10 @@ class ApplyCell: UITableViewCell {
         
         horizontalLine.image = UIImage.colorImage(color: UIColor.theme)
         
-        rightIcon.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+        rightIcon.image = #imageLiteral(resourceName: "right_icon.png")
+        
+        lockView = UIView()
+        lockView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
         contentView.addSubview(containerView)
         containerView.addSubview(levelIcon)
@@ -74,6 +80,7 @@ class ApplyCell: UITableViewCell {
         containerView.addSubview(dateTime)
         containerView.addSubview(horizontalLine)
         containerView.addSubview(rightIcon)
+        containerView.addSubview(lockView)
     }
     
     func setupLayout() -> Void {
@@ -112,7 +119,7 @@ class ApplyCell: UITableViewCell {
         }
         
         rightIcon.snp.makeConstraints { (make) in
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(30)
             make.right.equalTo(-10)
             make.centerY.equalTo(containerView)
         }
@@ -127,6 +134,10 @@ class ApplyCell: UITableViewCell {
         dateTime.snp.makeConstraints { (make) in
             make.bottom.equalTo(horizontalLine.snp.top).offset(-5)
             make.left.right.equalTo(horizontalLine)
+        }
+        
+        lockView.snp.makeConstraints { (make) in
+            make.edges.equalTo(containerView)
         }
         
     }

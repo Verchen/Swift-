@@ -56,19 +56,19 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
             }
             switch indexPath.row {
             case 0:
-                cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+                cell?.imageView?.image = #imageLiteral(resourceName: "zhima.png")
                 cell?.textLabel?.text = "芝麻信用分"
                 break
             case 1:
-                cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+                cell?.imageView?.image = #imageLiteral(resourceName: "zd_icon.png")
                 cell?.textLabel?.text = "信用卡账单"
                 break
             case 2:
-                cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+                cell?.imageView?.image = #imageLiteral(resourceName: "tong.png")
                 cell?.textLabel?.text = "手机通讯录"
                 break
             default:
-                cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+                cell?.imageView?.image = #imageLiteral(resourceName: "jd.png")
                 cell?.textLabel?.text = "京东白条"
                 break
             }
@@ -97,7 +97,7 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         case 0:
             let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
             let leftImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
-            leftImage.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            leftImage.image = #imageLiteral(resourceName: "bixuan.png")
             header.addSubview(leftImage)
             let title = UILabel(frame: CGRect(x: 40, y: 0, width: 200, height: 40))
             title.text = "基本信息(必填)"
@@ -106,7 +106,7 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         default:
             let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
             let leftImage = UIImageView(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
-            leftImage.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            leftImage.image = #imageLiteral(resourceName: "kexuan.png")
             header.addSubview(leftImage)
             let title = UILabel(frame: CGRect(x: 40, y: 0, width: 200, height: 40))
             title.text = "其它信息(选填)"

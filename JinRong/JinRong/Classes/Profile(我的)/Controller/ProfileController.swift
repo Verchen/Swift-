@@ -38,19 +38,19 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         }
         switch indexPath.row {
         case 0:
-            cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            cell?.imageView?.image = #imageLiteral(resourceName: "backpack.png")
             cell?.textLabel?.text = "我的信息"
         case 1:
-            cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            cell?.imageView?.image = #imageLiteral(resourceName: "backpack.png")
             cell?.textLabel?.text = "账单查询"
         case 2:
-            cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            cell?.imageView?.image = #imageLiteral(resourceName: "password_icon.png")
             cell?.textLabel?.text = "修改密码"
         case 3:
-            cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            cell?.imageView?.image = #imageLiteral(resourceName: "password_icon.png")
             cell?.textLabel?.text = "我的银行卡"
         case 4:
-            cell?.imageView?.image = #imageLiteral(resourceName: "tabbar_home_highlighted")
+            cell?.imageView?.image = #imageLiteral(resourceName: "wo_set.png")
             cell?.textLabel?.text = "设置"
         default: break
             
