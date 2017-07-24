@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
+
 
 class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
@@ -52,6 +55,17 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         view.addSubview(borrowTypeView)
         view.addSubview(progressView)
         setupLayout()
+        
+        let params:Parameters = ["member_id":"10001"]
+        Alamofire.request("https://api.canka168.com/api/homes", method:.post, parameters:params).responseJSON { (response) in
+            if let jsonObj = response.value as? NSDictionary{
+                let models = Mapper<RootClass>().mapArray(JSONArray: jsonObj["list"] as! Array)
+                for model in models{
+                    print(model.title)
+                }
+            }
+        }
+        
     }
     func setupLayout() -> Void {
         segmentView.snp.makeConstraints { (make) in

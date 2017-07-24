@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		164654431F25A3B400F9FA8A /* RootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164654421F25A3B400F9FA8A /* RootClass.swift */; };
 		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
 		167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8391F2099B7006A6B9D /* SMSButton.swift */; };
 		167BA83C1F20B9C1006A6B9D /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 167BA83B1F20B9C1006A6B9D /* lock@2x.png */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		164654421F25A3B400F9FA8A /* RootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootClass.swift; sourceTree = "<group>"; };
 		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
 		167BA8391F2099B7006A6B9D /* SMSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSButton.swift; sourceTree = "<group>"; };
 		167BA83B1F20B9C1006A6B9D /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		1699F84A1F160C7B004C0B66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				164654421F25A3B400F9FA8A /* RootClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */,
 				1699F8751F1778B8004C0B66 /* BasicInfoCell.swift in Sources */,
 				1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */,
+				164654431F25A3B400F9FA8A /* RootClass.swift in Sources */,
 				16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */,
 				1699F8711F1714FA004C0B66 /* ApplyCell.swift in Sources */,
 				1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */,
