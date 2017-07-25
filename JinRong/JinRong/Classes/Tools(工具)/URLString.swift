@@ -20,6 +20,9 @@ let URL_BorrowDetail = BASE_URL+"/money/loan/"
 let URL_BorrowAction = BASE_URL+"/money/loan"
 /// 进度查询
 let URL_Progress = BASE_URL+"/project/progress"
+/// 联系人列表
+let URL_ContactsList = BASE_URL+"/auth/contact/list"
+
 
 
 		

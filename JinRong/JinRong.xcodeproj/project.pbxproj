@@ -59,6 +59,7 @@
 		16BBF6921F26DD8900BCC78C /* BorrowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */; };
 		16BBF6961F26F04300BCC78C /* applySucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBF6951F26F04300BCC78C /* applySucess@2x.png */; };
 		16BBF69F1F27145800BCC78C /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF69E1F27145800BCC78C /* ProgressModel.swift */; };
+		16BBF6A11F271FF800BCC78C /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6A01F271FF800BCC78C /* ContactsModel.swift */; };
 		16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */; };
 		16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */; };
 		16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */; };
@@ -152,6 +153,7 @@
 		16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowDetailModel.swift; sourceTree = "<group>"; };
 		16BBF6951F26F04300BCC78C /* applySucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applySucess@2x.png"; sourceTree = "<group>"; };
 		16BBF69E1F27145800BCC78C /* ProgressModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
+		16BBF6A01F271FF800BCC78C /* ContactsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthResultVC.swift; sourceTree = "<group>"; };
 		16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCardVC.swift; sourceTree = "<group>"; };
 		16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		1699F8421F160C7B004C0B66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				16BBF6A01F271FF800BCC78C /* ContactsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */,
 				1699F8771F177A06004C0B66 /* UIButton(extension).swift in Sources */,
 				16BBF69F1F27145800BCC78C /* ProgressModel.swift in Sources */,
+				16BBF6A11F271FF800BCC78C /* ContactsModel.swift in Sources */,
 				1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ObjectMapper
+import Alamofire
 
 class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
 
@@ -17,16 +19,21 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         return table
     }()
     
+    var dataSource: [ContactsModel] = [ContactsModel]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfig()
         view.addSubview(tableView)
         layoutSubviews()
+        
+        requestContacts()
     }
     
     //MARK: - TABLE代理方法
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return dataSource.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -36,7 +43,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         if cell == nil {
             cell = ContactsCell(style: .default, reuseIdentifier: "ContactsCell")
         }
-
+        cell?.model = dataSource[indexPath.section]
         return cell!
     }
     
@@ -69,6 +76,17 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+    }
+    
+    func requestContacts() -> Void {
+        let param : Parameters = ["userId":"1"]
+        Alamofire.request(URL_ContactsList, method: .post, parameters: param).responseJSON { (response) in
+            if let jsonDic = response.value as? NSDictionary{
+                self.dataSource = Mapper<ContactsModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
+                self.tableView.reloadData()
+            }
+        }
+        
     }
 
 }
