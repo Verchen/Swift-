@@ -18,7 +18,8 @@ let URL_Register = BASE_URL+"/user/reg"
 let URL_BorrowDetail = BASE_URL+"/money/loan/"
 /// 借款操作
 let URL_BorrowAction = BASE_URL+"/money/loan"
-
+/// 进度查询
+let URL_Progress = BASE_URL+"/project/progress"
 
 
 		

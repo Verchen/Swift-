@@ -22,7 +22,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.white
         table.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self?.refreshData()
+            self?.refreshBorrowData()
             }, loadingView: loadingView)
         table.dg_setPullToRefreshFillColor(UIColor.theme)
         table.dg_setPullToRefreshBackgroundColor(table.backgroundColor!)
@@ -36,6 +36,15 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         table.dataSource = self as UITableViewDataSource
         table.separatorStyle = .none
         table.isHidden = true
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.white
+        table.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.refreshProgressData()
+            }, loadingView: loadingView)
+        table.dg_setPullToRefreshFillColor(UIColor.theme)
+        table.dg_setPullToRefreshBackgroundColor(table.backgroundColor!)
+
         return table
     }()
     
@@ -56,6 +65,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     }()
     
     var borrowDataSource: [BorrowModel] = [BorrowModel]()
+    var progreDataSource: [ProgressModel] = [ProgressModel]()
     
     deinit {
         borrowTypeView.dg_removePullToRefresh()
@@ -69,7 +79,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         view.addSubview(progressView)
         setupLayout()
         
-        refreshData()
+        refreshBorrowData()
+        refreshProgressData()
         
     }
     func setupLayout() -> Void {
@@ -99,7 +110,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         case borrowTypeView:
             return borrowDataSource.count
         default:
-            return 50
+            return progreDataSource.count
         }
     }
     
@@ -121,10 +132,11 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             cell?.model = borrowDataSource[indexPath.row]
             return cell!
         default:
-            var cell = tableView.dequeueReusableCell(withIdentifier: "ProgressCell")
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ProgressCell") as? ProgressCell
             if cell == nil {
                 cell = ProgressCell(style: .default, reuseIdentifier: "ProgressCell")
             }
+            cell?.model = progreDataSource[indexPath.row]
             return cell!
         }
     }
@@ -174,7 +186,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func refreshData() -> Void {
+    /// 获取借款类型列表
+    func refreshBorrowData() -> Void {
         let params:Parameters = ["userId":"1"]
         Alamofire.request(URL_BORROW, method:.post, parameters:params).responseJSON { (response) in
             self.borrowTypeView.dg_stopLoading()
@@ -184,6 +197,19 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             }
         }
 
+    }
+    
+    /// 获取借款进度列表
+    func refreshProgressData() -> Void {
+        let param:Parameters = ["userId":"1"]
+        Alamofire.request(URL_Progress, method: .post, parameters: param).responseJSON { (response) in
+            self.progressView.dg_stopLoading()
+            if let jsonDic = response.value as? NSDictionary{
+                self.progreDataSource = Mapper<ProgressModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
+                self.progressView.reloadData()
+            }
+        }
+        
     }
 
 }

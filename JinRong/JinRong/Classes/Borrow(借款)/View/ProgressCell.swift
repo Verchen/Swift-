@@ -35,6 +35,22 @@ class ProgressCell: UITableViewCell {
     var ztValue = UILabel()
     //取消按钮
     var cancelButton = UIButton()
+    
+    var newModel : ProgressModel!
+    var model: ProgressModel {
+        get {
+            return self.newModel
+        }
+        set {
+            newModel = newValue
+            
+            totalLabel.text = "借款金额"+newModel.money.description+"元   |   "+newModel.day.description+"天期限"
+            bjValue.text = newModel.inAccountMoney.description
+            lxValue.text = newModel.interest.description
+            ztValue.text = (newModel.audit == 0) ? "审核中":"审核已通过"
+        }
+    }
+    
 
 
     required init?(coder aDecoder: NSCoder) {
@@ -58,7 +74,7 @@ class ProgressCell: UITableViewCell {
             make.height.equalTo(1)
         }
         
-        totalLabel.text = "借款金额60000元   |   14天期限"
+//        totalLabel.text = "借款金额60000元   |   14天期限"
         contentView.addSubview(totalLabel)
         totalLabel.snp.makeConstraints { (make) in
             make.left.right.equalTo(10)
@@ -86,7 +102,7 @@ class ProgressCell: UITableViewCell {
         
         bjValue.textAlignment = .right
         bjValue.textColor = UIColor.white
-        bjValue.text = "50000"
+//        bjValue.text = "50000"
         bjContainer.addSubview(bjValue)
         bjValue.snp.makeConstraints { (make) in
             make.right.equalTo(-10)
@@ -104,7 +120,7 @@ class ProgressCell: UITableViewCell {
             make.height.equalTo(height)
         }
         
-        lxValue.text = "1000"
+//        lxValue.text = "1000"
         lxValue.textAlignment = .right
         contentView.addSubview(lxValue)
         lxValue.snp.makeConstraints { (make) in
@@ -152,7 +168,7 @@ class ProgressCell: UITableViewCell {
             make.height.equalTo(height)
         }
         
-        ztValue.text = "审核中"
+//        ztValue.text = "审核中"
         ztValue.textAlignment = .right
         contentView.addSubview(ztValue)
         ztValue.snp.makeConstraints { (make) in
