@@ -15,7 +15,7 @@ class ProgressModel: Mappable {
     var day : Int!
     var inAccountMoney : Int!
     var interest : Int!
-    var loanId : Int!
+    var loan_id : Int!
     var money : String!
     var serviceMoney : Int!
 
@@ -28,7 +28,7 @@ class ProgressModel: Mappable {
         day             <- map["day"]
         inAccountMoney  <- map["inAccountMoney"]
         interest        <- map["interest"]
-        loanId          <- map["loanId"]
+        loan_id          <- map["loan_id"]
         money           <- map["money"]
         serviceMoney    <- map["serviceMoney"]
     }

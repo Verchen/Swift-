@@ -10,6 +10,10 @@ import Foundation
 
 let BASE_URL = "http://192.168.1.61"
 
+/// token
+let URL_Token = BASE_URL+"/oauth/token"
+/// 刷新token
+let URL_RefreshToken = BASE_URL+"/oauth/refresh/token"
 /// 借款列表
 let URL_BORROW = BASE_URL+"/project/list"
 /// 注册
@@ -22,7 +26,8 @@ let URL_BorrowAction = BASE_URL+"/money/loan"
 let URL_Progress = BASE_URL+"/project/progress"
 /// 联系人列表
 let URL_ContactsList = BASE_URL+"/auth/contact/list"
-
+/// 取消订阅
+let URL_Deapply = BASE_URL+"/user/unapply"
 
 
 		

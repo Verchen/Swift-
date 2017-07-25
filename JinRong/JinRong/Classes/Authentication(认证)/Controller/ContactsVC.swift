@@ -29,6 +29,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
         layoutSubviews()
         
         requestContacts()
+        
     }
     
     //MARK: - TABLE代理方法
@@ -79,7 +80,11 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func requestContacts() -> Void {
-        let param : Parameters = ["userId":"1"]
+        let param : Parameters = [
+            "userId":"1",
+            "access_token":"7484d38776927457a871d9d6bbde899b0a487548",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
         Alamofire.request(URL_ContactsList, method: .post, parameters: param).responseJSON { (response) in
             if let jsonDic = response.value as? NSDictionary{
                 self.dataSource = Mapper<ContactsModel>().mapArray(JSONArray: jsonDic["data"] as! Array)

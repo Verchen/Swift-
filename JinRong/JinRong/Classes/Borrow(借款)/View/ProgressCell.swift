@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol ProgressCellDelegate: NSObjectProtocol {
+    func progressCellCancel(progreModel: ProgressModel, index: Int)
+}
+
 class ProgressCell: UITableViewCell {
+    
+    weak open var delegate: ProgressCellDelegate?
+    
+    var index: Int?
     
     var line = UIView()
     //借款金额
@@ -48,10 +56,11 @@ class ProgressCell: UITableViewCell {
             bjValue.text = newModel.inAccountMoney.description
             lxValue.text = newModel.interest.description
             ztValue.text = (newModel.audit == 0) ? "审核中":"审核已通过"
+            
+            hkfsValue.text = index?.description
+
         }
     }
-    
-
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -61,6 +70,10 @@ class ProgressCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         setupUI()
+    }
+    
+    func cancelClick() -> Void {
+        delegate?.progressCellCancel(progreModel: model, index: index!)
     }
     
     func setupUI() -> Void {
@@ -150,7 +163,7 @@ class ProgressCell: UITableViewCell {
         
         hkfsValue.textColor = UIColor.white
         hkfsValue.textAlignment = .right
-        hkfsValue.text = "等额本金"
+//        hkfsValue.text = "等额本金"
         hkfsContainer.addSubview(hkfsValue)
         hkfsValue.snp.makeConstraints { (make) in
             make.right.equalTo(-10)
@@ -180,6 +193,7 @@ class ProgressCell: UITableViewCell {
         
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.setBackgroundImage(UIImage.colorImage(color: UIColor.theme), for: .normal)
+        cancelButton.addTarget(self, action: #selector(ProgressCell.cancelClick), for: .touchUpInside)
         contentView.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { (make) in
             make.left.right.equalTo(0)

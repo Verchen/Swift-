@@ -41,7 +41,9 @@ class BorrowDetailVC: BaseController {
         }
         startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
         let param: Parameters = [
-            "userId":"1"
+            "userId":"1",
+            "access_token":"ee4ed8995f81352fa72589c7af539781451c6cb7",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "没有数据")
@@ -418,7 +420,9 @@ class BorrowDetailVC: BaseController {
         let param : Parameters = [
             "userId":"1",
             "projectId":"1",
-            "cardId":dataSource?.cardId ?? ""
+            "cardId":dataSource?.cardId ?? "",
+            "access_token":"ee4ed8995f81352fa72589c7af539781451c6cb7",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         
         Alamofire.request(URL_BorrowAction, method: .post, parameters: param).responseJSON { (response) in

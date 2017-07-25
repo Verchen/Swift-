@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 import DGElasticPullToRefresh
 
-class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource {
+class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate {
     
     lazy var borrowTypeView: UITableView = {
         var table = UITableView(frame: CGRect.zero, style: .plain)
@@ -82,6 +82,30 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         refreshBorrowData()
         refreshProgressData()
         
+        let param: Parameters = [
+            "grant_type":"password",
+            "client_id":"testclient",
+            "client_secret":"testpass",
+            "username":"1",
+            "password":"1"
+        ]
+        
+        Alamofire.request(URL_Token, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "五")
+            let jsonDic = response.value as? NSDictionary
+            let param: Parameters = [
+                "grant_type":"refresh_token",
+                "refresh_token":jsonDic!["refresh_token"] ?? "",
+                "username":"1",
+                "password":"1",
+                "client_id":"testclient",
+                "client_secret":"testpass"
+            ]
+            Alamofire.request(URL_RefreshToken, method: .post, parameters: param).responseJSON(completionHandler: { (response) in
+                print(response.value ?? "")
+            })
+        }
+        
     }
     func setupLayout() -> Void {
         segmentView.snp.makeConstraints { (make) in
@@ -136,6 +160,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             if cell == nil {
                 cell = ProgressCell(style: .default, reuseIdentifier: "ProgressCell")
             }
+            cell?.delegate = self
+            cell?.index = indexPath.row
             cell?.model = progreDataSource[indexPath.row]
             return cell!
         }
@@ -166,8 +192,12 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    //MARK: - 自定义代理方法
     
+    //MARK: - 自定义代理方法
+    func progressCellCancel(progreModel: ProgressModel, index: Int) {
+        DeApply(progreModel: progreModel, index: index)
+    }
+
     //MARK: - 自定义方法
     func segmentChange(segment: UISegmentedControl) -> Void {
         switch segment.selectedSegmentIndex {
@@ -186,25 +216,55 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func DeApply(progreModel: ProgressModel, index: Int) -> Void {
+        let param: Parameters = [
+            "userId":"1",
+            "loanId":progreModel.loan_id,
+            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
+        
+        Alamofire.request(URL_Deapply, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "无")
+            self.progreDataSource.remove(at: index)
+            self.progressView.reloadData()
+        }
+    }
+    
     /// 获取借款类型列表
     func refreshBorrowData() -> Void {
-        let params:Parameters = ["userId":"1"]
+        let params:Parameters = [
+            "userId":"1",
+            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
         Alamofire.request(URL_BORROW, method:.post, parameters:params).responseJSON { (response) in
             self.borrowTypeView.dg_stopLoading()
-            if let jsonDic = response.value as? NSDictionary{
+            print(response.value ?? "")
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+    
+            if jsonDic["code"] as? Int == 200 {
                 self.borrowDataSource = Mapper<BorrowModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
                 self.borrowTypeView.reloadData()
             }
         }
-
     }
     
     /// 获取借款进度列表
     func refreshProgressData() -> Void {
-        let param:Parameters = ["userId":"1"]
+        let param:Parameters = [
+            "userId":"1",
+            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
         Alamofire.request(URL_Progress, method: .post, parameters: param).responseJSON { (response) in
             self.progressView.dg_stopLoading()
-            if let jsonDic = response.value as? NSDictionary{
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
                 self.progreDataSource = Mapper<ProgressModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
                 self.progressView.reloadData()
             }
