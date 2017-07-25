@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import PKHUD
 
-class RegistVC: BaseController {
+class RegistVC: BaseController, UIScrollViewDelegate {
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "注册"
         setupUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(RegistVC.keyboardChange), name: .UIKeyboardWillChangeFrame, object: nil)
 
     }
     
@@ -75,13 +82,54 @@ class RegistVC: BaseController {
         }
     }
     
+    
     func smsClick() -> Void {
         smsButton.start()
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    
+    func registClick() -> Void {
+        guard phoneField.hasText && passwordField.hasText && smsField.hasText else {
+            HUD.flash(.error, delay: 1)
+            return
+        }
+        
+        registButton.isEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.registButton.isEnabled = true
+        }
+        
+        let param:Parameters = [
+            "tel":phoneField.text!,
+            "pass":passwordField.text!
+        ]
+        
+        Alamofire.request(URL_Register, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "没数据")
+        }
+
+    }
+    
+    func keyboardChange(notifi: Notification) {
+        let notiInfo = notifi.userInfo
+        let rect = (notiInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let changeValue = smsField.frame.maxY + 64 - rect.origin.y
+        
+        if changeValue > 0 {
+            scrollView.setContentOffset(CGPoint(x: 0, y: changeValue + 10), animated: true)
+        }else{
+            scrollView.setContentOffset(CGPoint.zero, animated: true)
+        }
+    }
+    
+    //MARK: - 懒加载
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.alwaysBounceVertical = true
+        scroll.delegate = self
         return scroll
     }()
     
@@ -94,6 +142,7 @@ class RegistVC: BaseController {
     lazy var phoneField: UITextField = {
         let phone = UITextField()
         phone.placeholder = "请输入手机号"
+        phone.keyboardType = .phonePad
         return phone
     }()
     
@@ -135,6 +184,7 @@ class RegistVC: BaseController {
         regist.backgroundColor = UIColor.theme
         regist.setTitle("注册", for: .normal)
         regist.layer.cornerRadius = 5
+        regist.addTarget(self, action: #selector(RegistVC.registClick), for: .touchUpInside)
         return regist
     }()
 

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import ObjectMapper
-
+import DGElasticPullToRefresh
 
 class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource {
     
@@ -46,6 +46,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         return segm
     }()
     
+    var borrowDataSource: [BorrowModel] = [BorrowModel]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,15 +58,17 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         view.addSubview(progressView)
         setupLayout()
         
-        let params:Parameters = ["member_id":"10001"]
-        Alamofire.request("https://api.canka168.com/api/homes", method:.post, parameters:params).responseJSON { (response) in
-            if let jsonObj = response.value as? NSDictionary{
-                let models = Mapper<RootClass>().mapArray(JSONArray: jsonObj["list"] as! Array)
-                for model in models{
-                    print(model.title)
-                }
-            }
-        }
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.white
+        borrowTypeView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            // Add your logic here
+            // Do not forget to call dg_stopLoading() at the end
+//            self?.borrowTypeView.dg_stopLoading()
+            self?.refreshData()
+            }, loadingView: loadingView)
+        borrowTypeView.dg_setPullToRefreshFillColor(UIColor.theme)
+        borrowTypeView.dg_setPullToRefreshBackgroundColor(borrowTypeView.backgroundColor!)
         
     }
     func setupLayout() -> Void {
@@ -92,7 +96,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case borrowTypeView:
-            return 5
+            return borrowDataSource.count
         default:
             return 50
         }
@@ -113,6 +117,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
                 cell?.levelIcon.image = #imageLiteral(resourceName: "lock.png")
                 cell?.lockView.isHidden = false
             }
+            cell?.model = borrowDataSource[indexPath.row]
             return cell!
         default:
             var cell = tableView.dequeueReusableCell(withIdentifier: "ProgressCell")
@@ -129,6 +134,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         case borrowTypeView:
             if indexPath.row == 0 {
                 let vc = BorrowDetailVC()
+                let model = borrowDataSource[indexPath.row]
+                vc.id = String(model.id)
                 navigationController?.pushViewController(vc, animated: true)
             }
         default:
@@ -148,7 +155,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: - 自定义代理方法
     
-    //MARK: - 事件方法
+    //MARK: - 自定义方法
     func segmentChange(segment: UISegmentedControl) -> Void {
         switch segment.selectedSegmentIndex {
         case 0:
@@ -164,6 +171,18 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         default: break
             
         }
+    }
+    
+    func refreshData() -> Void {
+        let params:Parameters = ["userId":"1"]
+        Alamofire.request(URL_BORROW, method:.post, parameters:params).responseJSON { (response) in
+            self.borrowTypeView.dg_stopLoading()
+            if let jsonDic = response.value as? NSDictionary{
+                self.borrowDataSource = Mapper<BorrowModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
+                self.borrowTypeView.reloadData()
+            }
+        }
+
     }
 
 }

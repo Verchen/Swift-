@@ -1,21 +1,27 @@
 PODS:
   - Alamofire (4.5.0)
+  - DGElasticPullToRefresh (1.1)
   - NVActivityIndicatorView (3.6.1)
   - ObjectMapper (2.2.8)
+  - PKHUD (4.2.3)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5.0)
+  - DGElasticPullToRefresh (~> 1.1)
   - NVActivityIndicatorView (~> 3.6.1)
   - ObjectMapper (~> 2.2.8)
+  - PKHUD (~> 4.2.3)
   - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
+  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: ef76fb54488ba4450a93a00df053cc050cc30354
+PODFILE CHECKSUM: 1d207483a7a6664c0fb8c9b4e8b06fe66c0ec73f
 
 COCOAPODS: 1.2.0

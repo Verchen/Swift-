@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
 class BorrowDetailVC: BaseController {
     
@@ -15,14 +17,39 @@ class BorrowDetailVC: BaseController {
         scroll.alwaysBounceVertical = true
         return scroll
     }()
+    
+    var id : String?
+    var dataSource : BorrowDetailModel?
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "确认借款"
         
-        
-        setupUI()
+        requestDataSource()
 
+    }
+    
+    func requestDataSource() {
+        if id == nil {
+            return
+        }
+        let param: Parameters = [
+            "userId":"1"
+        ]
+        
+//        Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseJSON { (response) in
+//            print(response.value ?? "没有数据")
+//            if let resDic = response.value as? [String : Any]{
+//                self.dataSource = BorrowDetailModel(JSON: resDic["data"] as! [String : Any])
+//                self.setupUI()
+//            }
+//            
+//        }
+        Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseString { (response) in
+            print(response.value ?? "没有数据")
+        }
     }
     
     func setupUI() -> Void {
@@ -66,7 +93,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let daoMoney = UILabel()
-        daoMoney.text = "850元"
+        daoMoney.text = dataSource?.inAccountMoney.description
         daoMoney.font = UIFont.systemFont(ofSize: 20)
         daoMoney.textColor = UIColor.init(valueRGB: 0x986515)
         daoMoney.textAlignment = .center
@@ -101,7 +128,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let fuwuMoney = UILabel()//(frame: CGRect(x: line.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
-        fuwuMoney.text = "150元"
+        fuwuMoney.text = dataSource?.serviceMoney.description
         fuwuMoney.textColor = UIColor.init(valueRGB: 0x986515)
         fuwuMoney.textAlignment = .center
         fuwuMoney.font = UIFont.systemFont(ofSize: 20)
@@ -136,7 +163,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let day = UILabel()//(frame: CGRect(x: line2.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
-        day.text = "30天"
+        day.text = dataSource?.day.description ?? ""+"天"
         day.textColor = UIColor.init(valueRGB: 0x986515)
         day.textAlignment = .center
         day.font = UIFont.systemFont(ofSize: 20)
@@ -203,7 +230,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let bank = UILabel()//(frame: CGRect(x: 120, y: bankTip.frame.minY, width: container.frame.width - 130, height: 18))
-        bank.text = "招商银行"
+        bank.text = dataSource?.back
         bank.font = UIFont.systemFont(ofSize: 15)
         bank.textAlignment = .right
         container.addSubview(bank)
@@ -236,7 +263,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let bankNum = UILabel()//(frame: CGRect(x: 120, y: bankNumTip.frame.minY, width: container.frame.width - 130, height: 18))
-        bankNum.text = "621661******9001"
+        bankNum.text = dataSource?.cardCode.description
         bankNum.font = UIFont.systemFont(ofSize: 15)
         bankNum.textAlignment = .right
         container.addSubview(bankNum)
@@ -282,7 +309,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let hkMoney = UILabel()//(frame: CGRect(x: 0, y: hkTip.frame.maxY + 5, width: huanKuanContai.frame.width, height: 20))
-        hkMoney.text = "1111元"
+        hkMoney.text = dataSource?.repaymentAllMoney.description ?? ""+"元"
         hkMoney.textAlignment = .center
         hkMoney.font = UIFont.systemFont(ofSize: 15)
         hkMoney.textColor = UIColor.init(valueRGB: 0x986515)
@@ -294,7 +321,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let hkDes = UILabel()//(frame: CGRect(x: 0, y: hkMoney.frame.maxY, width: huanKuanContai.frame.width, height: 20))
-        hkDes.text = "(包含利息400元)"
+        hkDes.text = "(包含利息"+(dataSource?.interest.description ?? "")+"元)"
         hkDes.textAlignment = .center
         hkDes.font = UIFont.systemFont(ofSize: 14)
         hkDes.textColor = UIColor.init(valueRGB: 0x986515)
@@ -330,7 +357,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let date = UILabel()//(frame: CGRect(x: 0, y: dateTip.frame.maxY + 15, width: riQiContai.frame.width, height: 20))
-        date.text = "2022-12-12"
+        date.text = dataSource?.repaymentTime
         date.font = UIFont.systemFont(ofSize: 15)
         date.textAlignment = .center
         date.textColor = UIColor.init(valueRGB: 0x986515)

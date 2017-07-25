@@ -27,6 +27,20 @@ class ApplyCell: UITableViewCell {
     
     var lockView = UIView()
     
+    var newModel: BorrowModel!
+    
+    var model: BorrowModel {
+        get {
+            return self.newModel
+        }
+        set {
+            newModel = newValue
+            levelText.text = "LV"+String(newModel.lv)
+            moneyLabel.text = newModel.money+"元"
+            dateTime.text = String(newModel.day)+"天"
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -108,8 +122,8 @@ class ApplyCell: UITableViewCell {
         }
         
         numberTip.snp.makeConstraints { (make) in
-            make.left.equalTo(verticalLine.snp.right).offset(15)
-            make.right.equalTo(horizontalLine.snp.left).offset(-15)
+            make.left.equalTo(verticalLine.snp.right).offset(5)
+            make.right.equalTo(horizontalLine.snp.left).offset(-5)
             make.top.equalTo(15)
         }
         
@@ -128,7 +142,7 @@ class ApplyCell: UITableViewCell {
             make.right.equalTo(rightIcon.snp.left).offset(-10)
             make.centerY.equalTo(containerView).offset(10)
             make.height.equalTo(1)
-            make.width.equalTo(70)
+            make.width.equalTo(50)
         }
         
         dateTime.snp.makeConstraints { (make) in
