@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import ObjectMapper
+import NVActivityIndicatorView
 
 class BorrowDetailVC: BaseController {
     
@@ -17,6 +18,9 @@ class BorrowDetailVC: BaseController {
         scroll.alwaysBounceVertical = true
         return scroll
     }()
+    
+    var confirm : UIButton!
+    
     
     var id : String?
     var dataSource : BorrowDetailModel?
@@ -35,20 +39,17 @@ class BorrowDetailVC: BaseController {
         if id == nil {
             return
         }
+        startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
         let param: Parameters = [
             "userId":"1"
         ]
-        
-//        Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseJSON { (response) in
-//            print(response.value ?? "没有数据")
-//            if let resDic = response.value as? [String : Any]{
-//                self.dataSource = BorrowDetailModel(JSON: resDic["data"] as! [String : Any])
-//                self.setupUI()
-//            }
-//            
-//        }
-        Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseString { (response) in
+        Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "没有数据")
+            if let resDic = response.value as? [String : Any]{
+                self.dataSource = BorrowDetailModel(JSON: resDic["data"] as! [String : Any])
+                self.setupUI()
+            }
+            self.stopAnimating()
         }
     }
     
@@ -93,7 +94,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let daoMoney = UILabel()
-        daoMoney.text = dataSource?.inAccountMoney.description
+        daoMoney.text = (dataSource?.inAccountMoney.description)!+"元"
         daoMoney.font = UIFont.systemFont(ofSize: 20)
         daoMoney.textColor = UIColor.init(valueRGB: 0x986515)
         daoMoney.textAlignment = .center
@@ -128,7 +129,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let fuwuMoney = UILabel()//(frame: CGRect(x: line.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
-        fuwuMoney.text = dataSource?.serviceMoney.description
+        fuwuMoney.text = (dataSource?.serviceMoney.description)!+"元"
         fuwuMoney.textColor = UIColor.init(valueRGB: 0x986515)
         fuwuMoney.textAlignment = .center
         fuwuMoney.font = UIFont.systemFont(ofSize: 20)
@@ -163,7 +164,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let day = UILabel()//(frame: CGRect(x: line2.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
-        day.text = dataSource?.day.description ?? ""+"天"
+        day.text = (dataSource?.day.description ?? "")+"天"
         day.textColor = UIColor.init(valueRGB: 0x986515)
         day.textAlignment = .center
         day.font = UIFont.systemFont(ofSize: 20)
@@ -309,7 +310,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let hkMoney = UILabel()//(frame: CGRect(x: 0, y: hkTip.frame.maxY + 5, width: huanKuanContai.frame.width, height: 20))
-        hkMoney.text = dataSource?.repaymentAllMoney.description ?? ""+"元"
+        hkMoney.text = (dataSource?.repaymentAllMoney.description ?? "")+"元"
         hkMoney.textAlignment = .center
         hkMoney.font = UIFont.systemFont(ofSize: 15)
         hkMoney.textColor = UIColor.init(valueRGB: 0x986515)
@@ -368,16 +369,6 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-//        container.frame.size = CGSize(width: width - 60, height: huanKuanContai.frame.maxY + 20)
-//        let border = CAShapeLayer()
-//        border.frame = container.bounds
-//        border.path = UIBezierPath(roundedRect: border.bounds, cornerRadius: 5).cgPath
-//        border.fillColor = UIColor.clear.cgColor
-//        border.strokeColor = UIColor.theme.cgColor
-//        border.lineWidth = 2
-//        border.lineDashPattern = [10,5]
-//        container.layer.addSublayer(border)
-        
         let agreement = UIButton(type: .custom)
         agreement.isSelected = true
         agreement.setTitle("《贷款相关协议合同》", for: .normal)
@@ -386,7 +377,6 @@ class BorrowDetailVC: BaseController {
         agreement.setImage(#imageLiteral(resourceName: "agree_normal.png"), for: .normal)
         agreement.setImage(#imageLiteral(resourceName: "agree_select.png"), for: .selected)
         agreement.sizeToFit()
-//        agreement.frame.origin = CGPoint(x: 30, y: container.frame.maxY + 20)
         agreement.addTarget(self, action: #selector(BorrowDetailVC.agreementClick(button:)), for: .touchUpInside)
         scrollView.addSubview(agreement)
         agreement.snp.makeConstraints { (make) in
@@ -396,8 +386,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let confirm = UIButton(type: .custom)
-//        confirm.frame = CGRect(x: 30, y: agreement.frame.maxY + 20, width: width - 60, height: 35)
+        confirm = UIButton(type: .custom)
         confirm.backgroundColor = UIColor.theme
         confirm.layer.cornerRadius = 5
         confirm.setTitle("确认", for: .normal)
@@ -410,16 +399,34 @@ class BorrowDetailVC: BaseController {
             make.centerX.equalTo(scrollView)
             make.bottom.equalTo(-30)
         }
-        
-    
     }
     
     func agreementClick(button: UIButton) -> Void {
         button.isSelected = !button.isSelected
+        if button.isSelected {
+            confirm.isEnabled = true
+            confirm.backgroundColor = UIColor.theme
+        }else{
+            confirm.isEnabled = false
+            confirm.backgroundColor = UIColor.theme.withAlphaComponent(0.5)
+        }
     }
     
     func submit() -> Void {
-        navigationController?.pushViewController(ApplyVC(), animated: true)
+
+        startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
+        let param : Parameters = [
+            "userId":"1",
+            "projectId":"1",
+            "cardId":dataSource?.cardId ?? ""
+        ]
+        
+        Alamofire.request(URL_BorrowAction, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "没数据")
+            self.stopAnimating()
+            self.navigationController?.pushViewController(ApplyVC(), animated: true)
+        }
+        
     }
     
     

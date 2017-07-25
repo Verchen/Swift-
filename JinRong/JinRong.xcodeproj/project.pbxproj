@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		164654431F25A3B400F9FA8A /* RootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164654421F25A3B400F9FA8A /* RootClass.swift */; };
 		164654451F25E31200F9FA8A /* URLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164654441F25E31200F9FA8A /* URLString.swift */; };
 		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
 		167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8391F2099B7006A6B9D /* SMSButton.swift */; };
@@ -57,7 +56,8 @@
 		1699F8961F1C59D9004C0B66 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8951F1C59D9004C0B66 /* ContactsVC.swift */; };
 		1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */; };
 		16BBF68E1F26011D00BCC78C /* BorrowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF68D1F26011D00BCC78C /* BorrowModel.swift */; };
-		16BBF6901F260E8C00BCC78C /* BorrowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF68F1F260E8C00BCC78C /* BorrowDetailModel.swift */; };
+		16BBF6921F26DD8900BCC78C /* BorrowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */; };
+		16BBF6961F26F04300BCC78C /* applySucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBF6951F26F04300BCC78C /* applySucess@2x.png */; };
 		16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */; };
 		16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */; };
 		16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */; };
@@ -93,7 +93,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		164654421F25A3B400F9FA8A /* RootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootClass.swift; sourceTree = "<group>"; };
 		164654441F25E31200F9FA8A /* URLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLString.swift; sourceTree = "<group>"; };
 		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
 		167BA8391F2099B7006A6B9D /* SMSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSButton.swift; sourceTree = "<group>"; };
@@ -149,7 +148,8 @@
 		1699F8951F1C59D9004C0B66 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthVC.swift; sourceTree = "<group>"; };
 		16BBF68D1F26011D00BCC78C /* BorrowModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowModel.swift; sourceTree = "<group>"; };
-		16BBF68F1F260E8C00BCC78C /* BorrowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowDetailModel.swift; sourceTree = "<group>"; };
+		16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowDetailModel.swift; sourceTree = "<group>"; };
+		16BBF6951F26F04300BCC78C /* applySucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applySucess@2x.png"; sourceTree = "<group>"; };
 		16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthResultVC.swift; sourceTree = "<group>"; };
 		16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCardVC.swift; sourceTree = "<group>"; };
 		16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
@@ -371,9 +371,8 @@
 		1699F84A1F160C7B004C0B66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				164654421F25A3B400F9FA8A /* RootClass.swift */,
 				16BBF68D1F26011D00BCC78C /* BorrowModel.swift */,
-				16BBF68F1F260E8C00BCC78C /* BorrowDetailModel.swift */,
+				16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -507,6 +506,7 @@
 		1699F88E1F1B6E2A004C0B66 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				16BBF6951F26F04300BCC78C /* applySucess@2x.png */,
 				167BA8411F20C0EB006A6B9D /* right_icon@2x.png */,
 				167BA83F1F20C01C006A6B9D /* lock_open@2x.png */,
 				167BA83B1F20B9C1006A6B9D /* lock@2x.png */,
@@ -687,6 +687,7 @@
 				16ECD2F61F1EF1DC00F39B0F /* placeholder@2x.png in Resources */,
 				167BA85D1F219540006A6B9D /* password_icon@2x.png in Resources */,
 				167BA84E1F20C861006A6B9D /* kexuan@2x.png in Resources */,
+				16BBF6961F26F04300BCC78C /* applySucess@2x.png in Resources */,
 				167BA8581F20CB1F006A6B9D /* jd@2x.png in Resources */,
 				167BA8471F20C5A7006A6B9D /* bank@2x.png in Resources */,
 				1699F8191F160424004C0B66 /* Assets.xcassets in Resources */,
@@ -868,7 +869,6 @@
 				1699F8621F160FEE004C0B66 /* BaseNavigationController.swift in Sources */,
 				16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */,
 				1699F8601F160FAD004C0B66 /* ProfileController.swift in Sources */,
-				16BBF6901F260E8C00BCC78C /* BorrowDetailModel.swift in Sources */,
 				1699F87D1F18B481004C0B66 /* RepaidCell.swift in Sources */,
 				1699F8561F160D13004C0B66 /* MainController.swift in Sources */,
 				16ECD2F81F1EF96700F39B0F /* SettingVC.swift in Sources */,
@@ -889,12 +889,12 @@
 				1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */,
 				1699F8751F1778B8004C0B66 /* BasicInfoCell.swift in Sources */,
 				1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */,
-				164654431F25A3B400F9FA8A /* RootClass.swift in Sources */,
 				16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */,
 				1699F8711F1714FA004C0B66 /* ApplyCell.swift in Sources */,
 				1699F86D1F16330E004C0B66 /* UIColor(extension).swift in Sources */,
 				16ECD2F41F1DF58100F39B0F /* BankCardCell.swift in Sources */,
 				1699F8791F186A45004C0B66 /* SumCell.swift in Sources */,
+				16BBF6921F26DD8900BCC78C /* BorrowDetailModel.swift in Sources */,
 				1699F87B1F189FB5004C0B66 /* BillCell.swift in Sources */,
 				1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */,
 				1699F8771F177A06004C0B66 /* UIButton(extension).swift in Sources */,

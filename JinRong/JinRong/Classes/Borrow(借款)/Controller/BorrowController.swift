@@ -18,6 +18,15 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         table.delegate = self as UITableViewDelegate
         table.dataSource = self as UITableViewDataSource
         table.separatorStyle = .none
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.white
+        table.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.refreshData()
+            }, loadingView: loadingView)
+        table.dg_setPullToRefreshFillColor(UIColor.theme)
+        table.dg_setPullToRefreshBackgroundColor(table.backgroundColor!)
+
         return table
     }()
     
@@ -48,7 +57,9 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     
     var borrowDataSource: [BorrowModel] = [BorrowModel]()
     
-
+    deinit {
+        borrowTypeView.dg_removePullToRefresh()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "佳易贷"
@@ -58,17 +69,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         view.addSubview(progressView)
         setupLayout()
         
-        
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.white
-        borrowTypeView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            // Add your logic here
-            // Do not forget to call dg_stopLoading() at the end
-//            self?.borrowTypeView.dg_stopLoading()
-            self?.refreshData()
-            }, loadingView: loadingView)
-        borrowTypeView.dg_setPullToRefreshFillColor(UIColor.theme)
-        borrowTypeView.dg_setPullToRefreshBackgroundColor(borrowTypeView.backgroundColor!)
+        refreshData()
         
     }
     func setupLayout() -> Void {

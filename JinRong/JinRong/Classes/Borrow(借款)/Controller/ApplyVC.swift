@@ -33,11 +33,12 @@ class ApplyVC: BaseController {
             make.edges.equalTo(view)
         }
         
-        let image = UIImageView(image: #imageLiteral(resourceName: "placeholder.png"))
+        let image = UIImageView(image: #imageLiteral(resourceName: "applySucess.png"))
         scrollView.addSubview(image)
         image.snp.makeConstraints { (make) in
             make.top.equalTo(30)
-            make.width.height.equalTo(200)
+            make.width.equalTo(200)
+            make.height.equalTo(144)
             make.centerX.equalTo(scrollView)
         }
         
