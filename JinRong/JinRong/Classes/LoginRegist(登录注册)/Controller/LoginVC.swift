@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
+import PKHUD
 
 class LoginVC: BaseController, UIScrollViewDelegate {
 
@@ -103,13 +106,37 @@ class LoginVC: BaseController, UIScrollViewDelegate {
     
     //MARK: - 事件方法
     func loginClick() -> Void {
-        navigationController?.popViewController(animated: true)
+        guard phoneNum.hasText && password.hasText else {
+            return
+        }
+        let param: Parameters = [
+            "tel":phoneNum.text!,
+            "pass":password.text!,
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
+        Alamofire.request(URL_Login, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "wu")
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["code"] as? Int == 0 {
+                HUD.flash(.labeledError(title: jsonDic["message"] as? String, subtitle: nil), delay: 1)
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
+                let memid = (jsonDic["data"] as! NSDictionary)["id"]
+                UserDefaults.standard.set(memid, forKey: MemberIdKey)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: LoginSuccessNotification), object: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     func registClick() -> Void {
         navigationController?.pushViewController(RegistVC(), animated: true)
     }
     func forgetClick() -> Void {
-        navigationController?.pushViewController(BaseController(), animated: true)
+        navigationController?.pushViewController(ForgetVC(), animated: true)
     }
     
     //MARK: - 懒加载
@@ -129,6 +156,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
     lazy var phoneNum: UITextField = {
         let phone = UITextField()
         phone.placeholder = "请输入手机号"
+        phone.keyboardType = .phonePad
         return phone
     }()
     

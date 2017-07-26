@@ -18,6 +18,25 @@ class SumCell: UITableViewCell {
     
     var verticalLine = UIView()
     
+    var newModel: BillModel?
+    var model: BillModel? {
+        get {
+            return self.newModel
+        }
+        set {
+            newModel = newValue
+            
+            let attributeStr = NSMutableAttributedString(string: (newModel?.yetMoney?.description ?? "0.00")+"元")
+            attributeStr.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr.length - 1, length: 1))
+            sumMoney.attributedText = attributeStr
+            
+            let attributeStr2 = NSMutableAttributedString(string: (newModel?.notYetMoney?.description ?? "0.00")+"元")
+            attributeStr2.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr2.length - 1, length: 1))
+            willMoney.attributedText = attributeStr2
+
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -40,9 +59,9 @@ class SumCell: UITableViewCell {
         sumMoney.frame = CGRect(x: 0, y: sumTip.frame.maxY + 5, width: width * 0.5, height: 40)
         sumMoney.font = UIFont.systemFont(ofSize: 30)
         sumMoney.textColor = UIColor.red
-        let attributeStr = NSMutableAttributedString(string: "0.00元")
-        attributeStr.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr.length - 1, length: 1))
-        sumMoney.attributedText = attributeStr
+//        let attributeStr = NSMutableAttributedString(string: "0.00元")
+//        attributeStr.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr.length - 1, length: 1))
+//        sumMoney.attributedText = attributeStr
         
         sumMoney.textAlignment = .center
         contentView.addSubview(sumMoney)
@@ -59,9 +78,9 @@ class SumCell: UITableViewCell {
         willMoney.frame = CGRect(x: width / 2, y: willTip.frame.maxY + 5, width: width / 2, height: 40)
         willMoney.font = UIFont.systemFont(ofSize: 30)
         willMoney.textColor = UIColor.red
-        let attributeStr2 = NSMutableAttributedString(string: "0.00元")
-        attributeStr2.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr.length - 1, length: 1))
-        willMoney.attributedText = attributeStr2
+//        let attributeStr2 = NSMutableAttributedString(string: "0.00元")
+//        attributeStr2.addAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName : UIColor.black], range: NSRange(location: attributeStr2.length - 1, length: 1))
+//        willMoney.attributedText = attributeStr2
         willMoney.textAlignment = .center
         contentView.addSubview(willMoney)
     }

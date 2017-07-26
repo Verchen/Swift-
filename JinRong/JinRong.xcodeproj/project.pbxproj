@@ -61,6 +61,10 @@
 		16BBF69F1F27145800BCC78C /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF69E1F27145800BCC78C /* ProgressModel.swift */; };
 		16BBF6A11F271FF800BCC78C /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6A01F271FF800BCC78C /* ContactsModel.swift */; };
 		16BBF6A31F27272500BCC78C /* String(extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6A21F27272500BCC78C /* String(extension).swift */; };
+		16BBF6A51F287A1300BCC78C /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6A41F287A1300BCC78C /* UserAccount.swift */; };
+		16BBF6A91F2881AE00BCC78C /* UpdatePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6A81F2881AE00BCC78C /* UpdatePasswordVC.swift */; };
+		16BBF6AB1F28886000BCC78C /* ForgetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6AA1F28886000BCC78C /* ForgetVC.swift */; };
+		16BBF6AD1F28960200BCC78C /* BillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6AC1F28960200BCC78C /* BillModel.swift */; };
 		16ECD2E11F1CA22B00F39B0F /* JDAuthResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */; };
 		16ECD2E31F1D9FC000F39B0F /* BankCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */; };
 		16ECD2E51F1D9FDB00F39B0F /* PhoneAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */; };
@@ -156,6 +160,10 @@
 		16BBF69E1F27145800BCC78C /* ProgressModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
 		16BBF6A01F271FF800BCC78C /* ContactsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		16BBF6A21F27272500BCC78C /* String(extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String(extension).swift"; sourceTree = "<group>"; };
+		16BBF6A41F287A1300BCC78C /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		16BBF6A81F2881AE00BCC78C /* UpdatePasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePasswordVC.swift; sourceTree = "<group>"; };
+		16BBF6AA1F28886000BCC78C /* ForgetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetVC.swift; sourceTree = "<group>"; };
+		16BBF6AC1F28960200BCC78C /* BillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillModel.swift; sourceTree = "<group>"; };
 		16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthResultVC.swift; sourceTree = "<group>"; };
 		16ECD2E21F1D9FC000F39B0F /* BankCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankCardVC.swift; sourceTree = "<group>"; };
 		16ECD2E41F1D9FDB00F39B0F /* PhoneAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneAuthVC.swift; sourceTree = "<group>"; };
@@ -340,6 +348,7 @@
 		1699F8461F160C7B004C0B66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				16BBF6AC1F28960200BCC78C /* BillModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +420,7 @@
 			children = (
 				16ECD2F91F1F04EA00F39B0F /* LoginVC.swift */,
 				16ECD2FB1F1F053400F39B0F /* RegistVC.swift */,
+				16BBF6AA1F28886000BCC78C /* ForgetVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -436,6 +446,7 @@
 				1699F8551F160D13004C0B66 /* MainController.swift */,
 				1699F8611F160FEE004C0B66 /* BaseNavigationController.swift */,
 				1699F8571F160D56004C0B66 /* BaseController.swift */,
+				16BBF6A41F287A1300BCC78C /* UserAccount.swift */,
 			);
 			path = "Main(主控制器)";
 			sourceTree = "<group>";
@@ -455,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				1699F85F1F160FAD004C0B66 /* ProfileController.swift */,
+				16BBF6A81F2881AE00BCC78C /* UpdatePasswordVC.swift */,
 				16ECD2F71F1EF96700F39B0F /* SettingVC.swift */,
 			);
 			path = Controller;
@@ -871,6 +883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16BBF6AB1F28886000BCC78C /* ForgetVC.swift in Sources */,
 				16BBF68E1F26011D00BCC78C /* BorrowModel.swift in Sources */,
 				16ECD2FA1F1F04EA00F39B0F /* LoginVC.swift in Sources */,
 				16ECD2E71F1D9FF300F39B0F /* IdentityAuthVC.swift in Sources */,
@@ -904,11 +917,14 @@
 				16ECD2F41F1DF58100F39B0F /* BankCardCell.swift in Sources */,
 				1699F8791F186A45004C0B66 /* SumCell.swift in Sources */,
 				16BBF6921F26DD8900BCC78C /* BorrowDetailModel.swift in Sources */,
+				16BBF6AD1F28960200BCC78C /* BillModel.swift in Sources */,
 				1699F87B1F189FB5004C0B66 /* BillCell.swift in Sources */,
 				1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */,
 				1699F8771F177A06004C0B66 /* UIButton(extension).swift in Sources */,
 				16BBF69F1F27145800BCC78C /* ProgressModel.swift in Sources */,
 				16BBF6A11F271FF800BCC78C /* ContactsModel.swift in Sources */,
+				16BBF6A91F2881AE00BCC78C /* UpdatePasswordVC.swift in Sources */,
+				16BBF6A51F287A1300BCC78C /* UserAccount.swift in Sources */,
 				1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */,
 				16BBF6A31F27272500BCC78C /* String(extension).swift in Sources */,
 			);

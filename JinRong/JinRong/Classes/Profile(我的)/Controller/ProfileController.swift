@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
 class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSource {
 
@@ -17,14 +19,18 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         return table
     }()
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConfig()
         view.addSubview(tableView)
-        
         setupLayout()
+        
+        requestUserInfo()
     }
-    
     
     //MARK: - tableview代理方法
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,6 +66,16 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+        case 0:
+            print(indexPath.row)
+        case 1:
+            print(indexPath.row)
+        case 2:
+            navigationController?.pushViewController(UpdatePasswordVC(), animated: true)
+        default:
+            print(indexPath.row)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -84,7 +100,9 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         
         let name = UILabel()
         name.font = UIFont.systemFont(ofSize: 20)
-        name.text = "叫我乔哥就好了"
+        if let nameT = UserAccount.sharedInstance.phone {
+            name.text = nameT
+        }
         name.textColor = UIColor.white
         header.addSubview(name)
         name.snp.makeConstraints { (make) in
@@ -102,7 +120,11 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         footer.backgroundColor = UIColor(valueRGB: 0xEFEFF4)
         
         let button = UIButton(type: .custom)
-        button.setTitle("退出登录", for: .normal)
+        if (UserDefaults.standard.object(forKey: MemberIdKey) != nil) {
+            button.setTitle("退出登录", for: .normal)
+        }else{
+            button.setTitle("登录", for: .normal)
+        }
         button.backgroundColor = UIColor.theme
         button.addTarget(self, action: #selector(ProfileController.logout), for: .touchUpInside)
         footer.addSubview(button)
@@ -125,16 +147,50 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
     //MARK: - 私有方法
     func setupConfig() -> Void {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_setting.png").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(ProfileController.settingClick))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileController.requestUserInfo), name: NSNotification.Name(rawValue: LoginSuccessNotification), object: nil)
     }
+    
     func setupLayout() -> Void {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view).inset(UIEdgeInsetsMake(0, 0, 49, 0))
         }
     }
     
+    func requestUserInfo() -> Void {
+        guard let userId = UserDefaults.standard.object(forKey: MemberIdKey) else {
+            return
+        }
+        
+        let param: Parameters = [
+            "id":userId,
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
+        Alamofire.request(URL_UserInfo, method: .get, parameters: param).responseJSON { (response) in
+            guard let jsonDic = response.value as? NSDictionary else {
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
+                let data = jsonDic["data"] as! NSDictionary
+                UserAccount.sharedInstance.phone = (data["tel"] as? Int)?.description
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     //MARK: - 事件方法
     func logout() -> Void {
-        navigationController?.pushViewController(LoginVC(), animated: true)
+        if (UserDefaults.standard.object(forKey: MemberIdKey) != nil) {
+            //退出
+            UserDefaults.standard.removeObject(forKey: MemberIdKey)
+            UserAccount.sharedInstance.phone = nil
+            tableView.reloadData()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogoutSuccessNotification), object: nil)
+        }else{
+            //登录
+            navigationController?.pushViewController(LoginVC(), animated: true)
+        }
     }
     func settingClick() -> Void {
         navigationController?.pushViewController(SettingVC(), animated: true)

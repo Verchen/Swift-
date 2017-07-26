@@ -69,10 +69,14 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     
     deinit {
         borrowTypeView.dg_removePullToRefresh()
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "佳易贷"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(BorrowController.refreshProgressData), name: NSNotification.Name(rawValue: LogoutSuccessNotification), object: nil)
+        
         view.addSubview(segmentView)
         segmentView.addSubview(segment)
         view.addSubview(borrowTypeView)
@@ -91,8 +95,10 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         ]
         
         Alamofire.request(URL_Token, method: .post, parameters: param).responseJSON { (response) in
-            print(response.value ?? "五")
             let jsonDic = response.value as? NSDictionary
+            if jsonDic?["access_token"] != nil {
+                UserDefaults.standard.set(jsonDic?["access_token"], forKey: TokenKey)
+            }
             let param: Parameters = [
                 "grant_type":"refresh_token",
                 "refresh_token":jsonDic!["refresh_token"] ?? "",
@@ -171,11 +177,16 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         
         switch tableView {
         case borrowTypeView:
-            if indexPath.row == 0 {
+            if UserDefaults.standard.object(forKey: MemberIdKey) != nil {
+                //            FIXME: - 借款类型点击限制
+                //            if indexPath.row == 0 {
                 let vc = BorrowDetailVC()
                 let model = borrowDataSource[indexPath.row]
                 vc.id = String(model.id)
                 navigationController?.pushViewController(vc, animated: true)
+                //            }
+            }else{
+                navigationController?.pushViewController(LoginVC(), animated: true)
             }
         default:
             break
@@ -218,9 +229,9 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     
     func DeApply(progreModel: ProgressModel, index: Int) -> Void {
         let param: Parameters = [
-            "userId":"1",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
             "loanId":progreModel.loan_id,
-            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         
@@ -234,8 +245,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     /// 获取借款类型列表
     func refreshBorrowData() -> Void {
         let params:Parameters = [
-            "userId":"1",
-            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_BORROW, method:.post, parameters:params).responseJSON { (response) in
@@ -255,8 +266,8 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
     /// 获取借款进度列表
     func refreshProgressData() -> Void {
         let param:Parameters = [
-            "userId":"1",
-            "access_token":"974c45f5e1658845162e2a71f2d7ed8ec5388f93",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_Progress, method: .post, parameters: param).responseJSON { (response) in

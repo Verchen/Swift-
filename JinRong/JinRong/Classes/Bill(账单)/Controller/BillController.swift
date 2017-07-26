@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
 
 class BillController: BaseController, UITableViewDelegate, UITableViewDataSource {
+    
+    var billModel: BillModel?
     
     lazy var segmentView: UISegmentedControl = {
         var segment = UISegmentedControl(items: ["应还款", "已还款"])
@@ -36,17 +40,48 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
         return table
     }()
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupConfig()
         navigationItem.titleView = segmentView
         view.addSubview(repayView)
         view.addSubview(repaidView)
+        
+        requestBillList()
+    }
+    
+    func setupConfig() -> Void {
+        NotificationCenter.default.addObserver(self, selector: #selector(BillController.requestBillList), name: NSNotification.Name(rawValue: LoginSuccessNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BillController.requestBillList), name: NSNotification.Name(rawValue: LogoutSuccessNotification), object: nil)
+    }
+    
+    //MARK: - 网络请求方法
+    func requestBillList() -> Void {
+        let param: Parameters = [
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
+        Alamofire.request(URL_Bill, method: .post, parameters: param).responseJSON { (response) in
+            guard let jsonDic = response.value as? NSDictionary else {
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
+                self.billModel = BillModel(JSON: jsonDic["data"] as! [String : Any])
+                self.repayView.reloadData()
+            }
+        }
+        
     }
     
     //MARK: - tableview代理方法
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView.isEqual(repayView) {
-            return 1 + 10
+            return 2
         }else{
             return 1
         }
@@ -54,7 +89,14 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.isEqual(repayView) {
-            return 1
+            if section == 0 {
+                return 1
+            }else{
+                guard (billModel != nil) else {
+                    return 0
+                }
+                return (billModel?.notYetList?.count)!
+            }
         }else{
             return 10
         }
@@ -63,10 +105,11 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.isEqual(repayView) {
             if indexPath.section == 0 {
-                var cell = tableView.dequeueReusableCell(withIdentifier: "SumCell")
+                var cell = tableView.dequeueReusableCell(withIdentifier: "SumCell") as? SumCell
                 if cell == nil {
                     cell = SumCell(style: .default, reuseIdentifier: "SumCell")
                 }
+                cell?.model = billModel
                 return cell!
                 
             }
@@ -94,7 +137,7 @@ class BillController: BaseController, UITableViewDelegate, UITableViewDataSource
             case 0:
                 return 85
             default:
-                return 195
+                return 195 + 40
             }
         }else{
             return 65

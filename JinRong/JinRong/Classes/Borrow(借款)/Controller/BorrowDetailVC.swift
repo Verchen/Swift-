@@ -41,17 +41,20 @@ class BorrowDetailVC: BaseController {
         }
         startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
         let param: Parameters = [
-            "userId":"1",
-            "access_token":"ee4ed8995f81352fa72589c7af539781451c6cb7",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_BorrowDetail+id!, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "没有数据")
-            if let resDic = response.value as? [String : Any]{
-                self.dataSource = BorrowDetailModel(JSON: resDic["data"] as! [String : Any])
+            self.stopAnimating()
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
+                self.dataSource = BorrowDetailModel(JSON: jsonDic["data"] as! [String : Any])
                 self.setupUI()
             }
-            self.stopAnimating()
         }
     }
     
@@ -421,7 +424,7 @@ class BorrowDetailVC: BaseController {
             "userId":"1",
             "projectId":"1",
             "cardId":dataSource?.cardId ?? "",
-            "access_token":"ee4ed8995f81352fa72589c7af539781451c6cb7",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         

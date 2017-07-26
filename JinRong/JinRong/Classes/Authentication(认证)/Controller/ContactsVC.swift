@@ -82,11 +82,14 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     func requestContacts() -> Void {
         let param : Parameters = [
             "userId":"1",
-            "access_token":"7484d38776927457a871d9d6bbde899b0a487548",
+            "access_token":"86200d12c3886a5f25a05b959660754ffdb899e3",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_ContactsList, method: .post, parameters: param).responseJSON { (response) in
-            if let jsonDic = response.value as? NSDictionary{
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["code"] as? Int == 200{
                 self.dataSource = Mapper<ContactsModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
                 self.tableView.reloadData()
             }

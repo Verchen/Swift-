@@ -84,6 +84,10 @@ class RegistVC: BaseController, UIScrollViewDelegate {
     
     
     func smsClick() -> Void {
+        if phoneField.text?.isPhone == false {
+            HUD.flash(.labeledError(title: "无效手机号", subtitle: nil), delay: 1)
+            return
+        }
         smsButton.start()
     }
     
@@ -104,7 +108,9 @@ class RegistVC: BaseController, UIScrollViewDelegate {
         
         let param:Parameters = [
             "tel":phoneField.text!,
-            "pass":passwordField.text!
+            "pass":passwordField.text!,
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         
         Alamofire.request(URL_Register, method: .post, parameters: param).responseJSON { (response) in

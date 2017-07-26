@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import PKHUD
+import Alamofire
+import ObjectMapper
 
 class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -16,6 +19,8 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
     let pickerView = UIPickerView()
     var pickerMinY: CGFloat = 35.0
     let relaArr = ["夫妻", "父亲", "母亲", "子女", "兄弟姐妹", "其它亲属"]
+    var relationId: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +49,7 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
         let phoneTip = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 25))
         phoneTip.textAlignment = .center
         phoneTip.text = "手机号"
+        phoneField.keyboardType = .phonePad
         phoneField.leftView = phoneTip
         phoneField.leftViewMode = .always
         phoneField.placeholder = "请输入手机号"
@@ -167,13 +173,33 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func commit() -> Void {
-        navigationController?.popViewController(animated: true)
+        guard nameField.hasText && phoneField.hasText && relaField.hasText else {
+            HUD.flash(.labeledError(title: "请填写信息", subtitle: nil), delay: 1)
+            return
+        }
+        if phoneField.text?.isPhone == false {
+            HUD.flash(.labeledError(title: "无效手机号", subtitle: nil), delay: 1)
+            return
+        }
+        let param: Parameters = [
+            "tel":phoneField.text!,
+            "name":nameField.text!,
+            "relation":relationId!,
+            "userId":"1",
+            "access_token":"86200d12c3886a5f25a05b959660754ffdb899e3",
+            "timestamp":Date.timeIntervalBetween1970AndReferenceDate
+        ]
+        Alamofire.request(URL_ContactsAdd, method: .post, parameters: param).responseJSON { (response) in
+            print(response.value ?? "wu")
+        }
+        
     }
     
     func pickerSlect() -> Void {
         showPicker(isHiden: true)
         let index = pickerView.selectedRow(inComponent: 0)
         relaField.text = relaArr[index]
+        relationId = index.description
     }
     
     //MARK: - 方法重写
