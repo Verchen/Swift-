@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 import PKHUD
+import NVActivityIndicatorView
 
 class LoginVC: BaseController, UIScrollViewDelegate {
 
@@ -109,6 +110,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
         guard phoneNum.hasText && password.hasText else {
             return
         }
+        startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
         let param: Parameters = [
             "tel":phoneNum.text!,
             "pass":password.text!,
@@ -117,6 +119,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
         ]
         Alamofire.request(URL_Login, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "wu")
+            self.stopAnimating()
             guard let jsonDic = response.value as? NSDictionary else{
                 return
             }
