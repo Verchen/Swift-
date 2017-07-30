@@ -8,7 +8,7 @@
 
 import Foundation
 
-let BASE_URL = "http://192.168.1.61"
+let BASE_URL = "http://118.89.220.47:2113"//"http://192.168.1.61"
 
 /// token
 let URL_Token = BASE_URL+"/oauth/token"

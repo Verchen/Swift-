@@ -95,13 +95,18 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         ]
         
         Alamofire.request(URL_Token, method: .post, parameters: param).responseJSON { (response) in
-            let jsonDic = response.value as? NSDictionary
-            if jsonDic?["access_token"] != nil {
-                UserDefaults.standard.set(jsonDic?["access_token"], forKey: TokenKey)
+            if response.result.isFailure {
+                return
+            }
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["access_token"] != nil {
+                UserDefaults.standard.set(jsonDic["access_token"], forKey: TokenKey)
             }
             let param: Parameters = [
                 "grant_type":"refresh_token",
-                "refresh_token":jsonDic!["refresh_token"] ?? "",
+                "refresh_token":jsonDic["refresh_token"] ?? "",
                 "username":"1",
                 "password":"1",
                 "client_id":"testclient",
