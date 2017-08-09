@@ -70,7 +70,11 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     }
     
     func rightItemClick() -> Void {
-        navigationController?.pushViewController(AddContactsVC(), animated: true)
+        let vc = AddContactsVC()
+        vc.addSuccess = {() -> Void in
+            self.requestContacts()
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func layoutSubviews() -> Void {
@@ -81,7 +85,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     
     func requestContacts() -> Void {
         let param : Parameters = [
-            "userId":"1",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
             "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]

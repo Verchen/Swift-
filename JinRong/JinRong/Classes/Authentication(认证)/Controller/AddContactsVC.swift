@@ -18,9 +18,9 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
     let relaField = UITextField()
     let pickerView = UIPickerView()
     var pickerMinY: CGFloat = 35.0
-    let relaArr = ["夫妻", "父亲", "母亲", "子女", "兄弟姐妹", "其它亲属"]
+    var relaArr: [RelationModel] = [RelationModel]()
     var relationId: String?
-    
+    var addSuccess = {() -> Void in}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,22 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
         navigationItem.rightBarButtonItem = rightItem
         
         setupUI()
+
+        requestRelation()
+        
+    }
+    
+    func requestRelation() -> Void {
+        Alamofire.request(URL_Relations).responseJSON { (response) in
+            print("关系",response)
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            if jsonDic["code"] as? Int == 200{
+                self.relaArr = Mapper<RelationModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
+                self.pickerView.reloadAllComponents()
+            }
+        }
     }
     
     func setupUI() -> Void {
@@ -139,12 +155,13 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 6
+        return relaArr.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     
-        return relaArr[row]
+        let relation = relaArr[row];
+        return relation.name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -185,12 +202,23 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
             "tel":phoneField.text!,
             "name":nameField.text!,
             "relation":relationId!,
-            "userId":"1",
-            "access_token":"86200d12c3886a5f25a05b959660754ffdb899e3",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_ContactsAdd, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "wu")
+            guard let jsonDic = response.value as? NSDictionary else {
+                return
+            }
+            if jsonDic["code"] as? Int == 200 {
+                HUD.flash(.labeledSuccess(title: jsonDic["message"] as? String, subtitle: nil), delay: 1)
+                self.navigationController?.popViewController(animated: true)
+                self.addSuccess()
+            }else{
+                HUD.flash(.labeledError(title: jsonDic["message"] as? String, subtitle: nil), delay: 1)
+            }
+            
         }
         
     }
@@ -198,8 +226,9 @@ class AddContactsVC: BaseController, UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerSlect() -> Void {
         showPicker(isHiden: true)
         let index = pickerView.selectedRow(inComponent: 0)
-        relaField.text = relaArr[index]
-        relationId = index.description
+        let relation = relaArr[index]
+        relaField.text = relation.name
+        relationId = relation.id?.description
     }
     
     //MARK: - 方法重写

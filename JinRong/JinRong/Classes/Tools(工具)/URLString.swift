@@ -38,6 +38,8 @@ let URL_ContactsList = BASE_URL+"/auth/contact/list"
 let URL_ContactsAdd = BASE_URL+"/auth/contact/add"
 /// 修改联系人
 let URL_ContactsUpdate = BASE_URL+"/auth/contact/"
+/// 关系
+let URL_Relations = BASE_URL+"/basic/relation"
 /// 取消订阅
 let URL_Deapply = BASE_URL+"/user/unapply"
 /// 账单信息

@@ -320,7 +320,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         ]
         Alamofire.request(URL_BORROW, method:.post, parameters:params).responseJSON { (response) in
             self.borrowTypeView.dg_stopLoading()
-            print(response.value ?? "")
+            print("借款列表",response.value ?? "借款列表空")
             guard let jsonDic = response.value as? NSDictionary else{
                 return
             }
