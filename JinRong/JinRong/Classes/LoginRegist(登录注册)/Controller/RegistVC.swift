@@ -40,8 +40,8 @@ class RegistVC: BaseController, UIScrollViewDelegate {
         }
         logo.snp.makeConstraints { (make) in
             make.top.equalTo(20)
-            make.width.equalTo(200)
-            make.height.equalTo(200 * 0.618)
+//            make.width.equalTo(200)
+//            make.height.equalTo(200 * 0.618)
             make.centerX.equalTo(scrollView)
         }
         phoneField.snp.makeConstraints { (make) in

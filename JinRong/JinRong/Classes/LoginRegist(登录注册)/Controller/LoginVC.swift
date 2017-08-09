@@ -37,8 +37,8 @@ class LoginVC: BaseController, UIScrollViewDelegate {
         }
         logo.snp.makeConstraints { (make) in
             make.top.equalTo(20)
-            make.width.equalTo(200)
-            make.height.equalTo(200 * 0.618)
+//            make.width.equalTo(200)
+//            make.height.equalTo(200 * 0.618)
             make.centerX.equalTo(scrollView)
         }
         phoneNum.snp.makeConstraints { (make) in
@@ -152,7 +152,7 @@ class LoginVC: BaseController, UIScrollViewDelegate {
     
     lazy var logo: UIImageView = {
         let log = UIImageView()
-        log.image = #imageLiteral(resourceName: "placeholder.png")
+        log.image = #imageLiteral(resourceName: "icon")
         return log
     }()
     

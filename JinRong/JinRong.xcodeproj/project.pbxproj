@@ -55,6 +55,7 @@
 		1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8931F1B8A95004C0B66 /* ApplyVC.swift */; };
 		1699F8961F1C59D9004C0B66 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8951F1C59D9004C0B66 /* ContactsVC.swift */; };
 		1699F8981F1C5C58004C0B66 /* JDAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */; };
+		16BBCC6A1F3AE85C00E4ECCF /* empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBCC691F3AE85C00E4ECCF /* empty@2x.png */; };
 		16BBF68E1F26011D00BCC78C /* BorrowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF68D1F26011D00BCC78C /* BorrowModel.swift */; };
 		16BBF6921F26DD8900BCC78C /* BorrowDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */; };
 		16BBF6961F26F04300BCC78C /* applySucess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 16BBF6951F26F04300BCC78C /* applySucess@2x.png */; };
@@ -154,6 +155,7 @@
 		1699F8931F1B8A95004C0B66 /* ApplyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyVC.swift; sourceTree = "<group>"; };
 		1699F8951F1C59D9004C0B66 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JDAuthVC.swift; sourceTree = "<group>"; };
+		16BBCC691F3AE85C00E4ECCF /* empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty@2x.png"; sourceTree = "<group>"; };
 		16BBF68D1F26011D00BCC78C /* BorrowModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowModel.swift; sourceTree = "<group>"; };
 		16BBF6911F26DD8900BCC78C /* BorrowDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorrowDetailModel.swift; sourceTree = "<group>"; };
 		16BBF6951F26F04300BCC78C /* applySucess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applySucess@2x.png"; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 		1699F88E1F1B6E2A004C0B66 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				16BBCC691F3AE85C00E4ECCF /* empty@2x.png */,
 				16BBF6951F26F04300BCC78C /* applySucess@2x.png */,
 				167BA8411F20C0EB006A6B9D /* right_icon@2x.png */,
 				167BA83F1F20C01C006A6B9D /* lock_open@2x.png */,
@@ -704,6 +707,7 @@
 				167BA83C1F20B9C1006A6B9D /* lock@2x.png in Resources */,
 				167BA8481F20C5A7006A6B9D /* contacts@2x.png in Resources */,
 				167BA8561F20CAD8006A6B9D /* tong@2x.png in Resources */,
+				16BBCC6A1F3AE85C00E4ECCF /* empty@2x.png in Resources */,
 				167BA85E1F219540006A6B9D /* wo_set@2x.png in Resources */,
 				16ECD2F61F1EF1DC00F39B0F /* placeholder@2x.png in Resources */,
 				167BA85D1F219540006A6B9D /* password_icon@2x.png in Resources */,

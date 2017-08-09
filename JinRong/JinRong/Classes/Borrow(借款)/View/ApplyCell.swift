@@ -38,6 +38,13 @@ class ApplyCell: UITableViewCell {
             levelText.text = "LV"+String(newModel.lv)
             moneyLabel.text = newModel.money+"元"
             dateTime.text = String(newModel.day)+"天"
+            if newModel.lock == 1 {
+                levelIcon.image = #imageLiteral(resourceName: "lock_open.png")
+                lockView.isHidden = true
+            }else{
+                levelIcon.image = #imageLiteral(resourceName: "lock.png")
+                lockView.isHidden = false
+            }            
         }
     }
     

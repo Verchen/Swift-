@@ -82,7 +82,7 @@ class ContactsVC: BaseController, UITableViewDelegate, UITableViewDataSource{
     func requestContacts() -> Void {
         let param : Parameters = [
             "userId":"1",
-            "access_token":"86200d12c3886a5f25a05b959660754ffdb899e3",
+            "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_ContactsList, method: .post, parameters: param).responseJSON { (response) in

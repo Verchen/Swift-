@@ -15,6 +15,8 @@ class BorrowModel: Mappable {
     var lv : Int!
     var money : String!
     var sort : String!
+    var lock : Int!
+    
     
     required init?(map: Map) {
         
@@ -26,6 +28,7 @@ class BorrowModel: Mappable {
         lv <- map["lv"]
         money <- map["money"]
         sort <- map["sort"]
+        lock <- map["lock"]
     }
     
 }

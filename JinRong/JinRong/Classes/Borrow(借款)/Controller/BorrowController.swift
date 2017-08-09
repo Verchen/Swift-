@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 import DGElasticPullToRefresh
+import PKHUD
 
 class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate {
     
@@ -64,6 +65,25 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         return segm
     }()
     
+    lazy var emptyView: UIView = {
+        let empty = UIView(frame: CGRect.zero)
+        empty.backgroundColor = UIColor.white
+        empty.isHidden = true
+        return empty
+    }()
+    lazy var emptyImage: UIImageView = {
+        let emptyImage = UIImageView()
+        emptyImage.image = #imageLiteral(resourceName: "empty.png")
+        return emptyImage
+    }()
+    lazy var emptyLabel: UILabel = {
+        let emptyLabel = UILabel()
+        emptyLabel.text = "您还没有任何借款申请哦"
+        emptyLabel.textColor = UIColor.init(valueRGB: 0xbfbfbf)
+        emptyLabel.textAlignment = .center
+        return emptyLabel
+    }()
+    
     var borrowDataSource: [BorrowModel] = [BorrowModel]()
     var progreDataSource: [ProgressModel] = [ProgressModel]()
     
@@ -81,20 +101,26 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         segmentView.addSubview(segment)
         view.addSubview(borrowTypeView)
         view.addSubview(progressView)
+        progressView.addSubview(emptyView)
+        emptyView.addSubview(emptyImage)
+        emptyView.addSubview(emptyLabel)
         setupLayout()
         
         refreshBorrowData()
         refreshProgressData()
         
+        
         let param: Parameters = [
             "grant_type":"password",
-            "client_id":"testclient",
-            "client_secret":"testpass",
-            "username":"1",
-            "password":"1"
+            "client_id":"occlient",
+            "client_secret":"eyJpdiI6IndOMjdYaWZRTW1WSElyMFVNQXdjcXc9PSIsInZhbHVlIjoiXC9UeWVoU1FOdHFtdGlvbkZc",
+            //FIXME: - 修改
+            "username":"13261301876",
+            "password":"111"
         ]
         
         Alamofire.request(URL_Token, method: .post, parameters: param).responseJSON { (response) in
+            print("获取token", response.value ?? "")
             if response.result.isFailure {
                 return
             }
@@ -107,13 +133,14 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             let param: Parameters = [
                 "grant_type":"refresh_token",
                 "refresh_token":jsonDic["refresh_token"] ?? "",
-                "username":"1",
-                "password":"1",
-                "client_id":"testclient",
-                "client_secret":"testpass"
+                //FIXME: - 修改
+                "username":"13261301876",
+                "password":"111",
+                "client_id":"occlient",
+                "client_secret":"eyJpdiI6IndOMjdYaWZRTW1WSElyMFVNQXdjcXc9PSIsInZhbHVlIjoiXC9UeWVoU1FOdHFtdGlvbkZc"
             ]
             Alamofire.request(URL_RefreshToken, method: .post, parameters: param).responseJSON(completionHandler: { (response) in
-                print(response.value ?? "")
+                print("获取刷新token",response.value ?? "")
             })
         }
         
@@ -136,6 +163,20 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             make.top.equalTo(segmentView.snp.bottom)
             make.bottom.equalTo(-49)
         }
+        emptyView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(progressView)
+            make.center.equalTo(progressView)
+        }
+        emptyImage.snp.makeConstraints { (make) in
+            make.centerX.equalTo(emptyView)
+            make.centerY.equalTo(emptyView).offset(-40)
+        }
+        emptyLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(emptyView)
+            make.top.equalTo(emptyImage.snp.bottom).offset(20)
+            make.height.equalTo(20)
+        }
+        
     }
     
     //MARK: - tableview代理方法
@@ -145,6 +186,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         case borrowTypeView:
             return borrowDataSource.count
         default:
+            emptyView.isHidden = progreDataSource.count>0
             return progreDataSource.count
         }
     }
@@ -156,13 +198,6 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             var cell = tableView.dequeueReusableCell(withIdentifier: "ApplyCell") as? ApplyCell
             if cell == nil {
                 cell = ApplyCell(style: .default, reuseIdentifier: "ApplyCell")
-            }
-            if indexPath.row == 0 {
-                cell?.levelIcon.image = #imageLiteral(resourceName: "lock_open.png")
-                cell?.lockView.isHidden = true
-            }else{
-                cell?.levelIcon.image = #imageLiteral(resourceName: "lock.png")
-                cell?.lockView.isHidden = false
             }
             cell?.model = borrowDataSource[indexPath.row]
             return cell!
@@ -183,13 +218,12 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         switch tableView {
         case borrowTypeView:
             if UserDefaults.standard.object(forKey: MemberIdKey) != nil {
-                //            FIXME: - 借款类型点击限制
-                //            if indexPath.row == 0 {
-                let vc = BorrowDetailVC()
                 let model = borrowDataSource[indexPath.row]
-                vc.id = String(model.id)
-                navigationController?.pushViewController(vc, animated: true)
-                //            }
+                if model.lock == 1 {
+                    let vc = BorrowDetailVC()
+                    vc.id = String(model.id)
+                    navigationController?.pushViewController(vc, animated: true)
+                }
             }else{
                 navigationController?.pushViewController(LoginVC(), animated: true)
             }
@@ -242,13 +276,43 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
         
         Alamofire.request(URL_Deapply, method: .post, parameters: param).responseJSON { (response) in
             print(response.value ?? "无")
-            self.progreDataSource.remove(at: index)
-            self.progressView.reloadData()
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            
+            if jsonDic["code"] as? Int == 200 {
+                HUD.flash(.labeledSuccess(title: jsonDic["message"] as? String, subtitle: nil), delay: 1)
+                self.refreshProgressData()
+            }
         }
     }
     
     /// 获取借款类型列表
     func refreshBorrowData() -> Void {
+        if UserDefaults.standard.object(forKey: MemberIdKey) != nil {
+            requestAccountBorrow()
+        }else{
+            requestGeneralBorrow()
+        }
+    }
+    
+    /// 获取未登录借款类型列表
+    func requestGeneralBorrow() -> Void {
+        Alamofire.request(URL_BORROW).responseJSON { (response) in
+            print("未登录借款列表", response)
+            self.borrowTypeView.dg_stopLoading()
+            guard let jsonDic = response.value as? NSDictionary else{
+                return
+            }
+            
+            if jsonDic["code"] as? Int == 200 {
+                self.borrowDataSource = Mapper<BorrowModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
+                self.borrowTypeView.reloadData()
+            }
+        }
+    }
+    /// 获取已登录借款类型列表
+    func requestAccountBorrow() -> Void {
         let params:Parameters = [
             "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
             "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
@@ -260,7 +324,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             guard let jsonDic = response.value as? NSDictionary else{
                 return
             }
-    
+            
             if jsonDic["code"] as? Int == 200 {
                 self.borrowDataSource = Mapper<BorrowModel>().mapArray(JSONArray: jsonDic["data"] as! Array)
                 self.borrowTypeView.reloadData()
@@ -276,6 +340,7 @@ class BorrowController: BaseController, UITableViewDelegate, UITableViewDataSour
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
         ]
         Alamofire.request(URL_Progress, method: .post, parameters: param).responseJSON { (response) in
+            print("进度列表", response)
             self.progressView.dg_stopLoading()
             guard let jsonDic = response.value as? NSDictionary else{
                 return

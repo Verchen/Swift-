@@ -76,7 +76,7 @@ class BorrowDetailVC: BaseController {
         }
         
         let level = UILabel()
-        level.text = "LV1"
+        level.text = "LV1(借款还没有)"
         level.textColor = UIColor.theme
         container.addSubview(level)
         level.snp.makeConstraints { (make) in
@@ -133,7 +133,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let fuwuMoney = UILabel()//(frame: CGRect(x: line.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
+        let fuwuMoney = UILabel()
         fuwuMoney.text = (dataSource?.serviceMoney.description)!+"元"
         fuwuMoney.textColor = UIColor.init(valueRGB: 0x986515)
         fuwuMoney.textAlignment = .center
@@ -146,7 +146,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(25)
         }
         
-        let line2 = UIView()//(frame: CGRect(x: fuwuTip.frame.maxX, y: level.frame.maxY, width: 1, height: 60))
+        let line2 = UIView()
         line2.backgroundColor = UIColor.theme
         container.addSubview(line2)
         line2.snp.makeConstraints { (make) in
@@ -156,7 +156,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(60)
         }
         
-        let dayTip = UILabel()//(frame: CGRect(x: line2.frame.maxX, y: daozhangTip.frame.minY, width: itemWidth, height: 20))
+        let dayTip = UILabel()
         dayTip.text = "借款天数"
         dayTip.textAlignment = .center
         dayTip.font = UIFont.systemFont(ofSize: 14)
@@ -168,7 +168,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let day = UILabel()//(frame: CGRect(x: line2.frame.maxX, y: daoMoney.frame.minY, width: itemWidth, height: 25))
+        let day = UILabel()
         day.text = (dataSource?.day.description ?? "")+"天"
         day.textColor = UIColor.init(valueRGB: 0x986515)
         day.textAlignment = .center
@@ -181,7 +181,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(25)
         }
         
-        let horiLine = DottedView()//(frame: CGRect(x: 10, y: daoMoney.frame.maxY + 15, width: container.frame.width - 20, height: 1))
+        let horiLine = DottedView()
         container.addSubview(horiLine)
         horiLine.snp.makeConstraints { (make) in
             make.left.equalTo(10)
@@ -190,7 +190,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(1)
         }
         
-        let nameTip = UILabel()//(frame: CGRect(x: 10, y: horiLine.frame.maxY + 10, width: 100, height: 18))
+        let nameTip = UILabel()
         nameTip.text = "借款人"
         nameTip.font = UIFont.systemFont(ofSize: 15)
         nameTip.textColor = UIColor.lightGray
@@ -202,8 +202,8 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
         
-        let name = UILabel()//(frame: CGRect(x: 120, y: nameTip.frame.minY, width: container.frame.width - 130, height: 18))
-        name.text = "张某某"
+        let name = UILabel()
+        name.text = "张某某（接口没有）"
         name.font = UIFont.systemFont(ofSize: 15)
         name.textAlignment = .right
         container.addSubview(name)
@@ -214,7 +214,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
         
-        let horiLine2 = DottedView()//(frame: CGRect(x: 10, y: nameTip.frame.maxY + 10, width: container.frame.width - 20, height: 1))
+        let horiLine2 = DottedView()
         container.addSubview(horiLine2)
         horiLine2.snp.makeConstraints { (make) in
             make.left.equalTo(10)
@@ -223,7 +223,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(1)
         }
         
-        let bankTip = UILabel()//(frame: CGRect(x: 10, y: horiLine2.frame.maxY + 10, width: 100, height: 18))
+        let bankTip = UILabel()
         bankTip.text = "所属银行"
         bankTip.font = UIFont.systemFont(ofSize: 15)
         bankTip.textColor = UIColor.lightGray
@@ -235,7 +235,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
         
-        let bank = UILabel()//(frame: CGRect(x: 120, y: bankTip.frame.minY, width: container.frame.width - 130, height: 18))
+        let bank = UILabel()
         bank.text = dataSource?.back
         bank.font = UIFont.systemFont(ofSize: 15)
         bank.textAlignment = .right
@@ -247,7 +247,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
 
-        let horiLine3 = DottedView()//(frame: CGRect(x: 10, y: bankTip.frame.maxY + 10, width: container.frame.width - 20, height: 1))
+        let horiLine3 = DottedView()
         container.addSubview(horiLine3)
         horiLine3.snp.makeConstraints { (make) in
             make.left.equalTo(10)
@@ -256,7 +256,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(1)
         }
         
-        let bankNumTip = UILabel()//(frame: CGRect(x: 10, y: horiLine3.frame.maxY + 10, width: 100, height: 18))
+        let bankNumTip = UILabel()
         bankNumTip.text = "入行卡号"
         bankNumTip.font = UIFont.systemFont(ofSize: 15)
         bankNumTip.textColor = UIColor.lightGray
@@ -268,7 +268,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
         
-        let bankNum = UILabel()//(frame: CGRect(x: 120, y: bankNumTip.frame.minY, width: container.frame.width - 130, height: 18))
+        let bankNum = UILabel()
         bankNum.text = dataSource?.cardCode.description
         bankNum.font = UIFont.systemFont(ofSize: 15)
         bankNum.textAlignment = .right
@@ -280,7 +280,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(18)
         }
         
-        let horiLine4 = DottedView()//(frame: CGRect(x: 10, y: bankNumTip.frame.maxY + 10, width: container.frame.width - 20, height: 1))
+        let horiLine4 = DottedView()
         container.addSubview(horiLine4)
         horiLine4.snp.makeConstraints { (make) in
             make.left.equalTo(10)
@@ -289,7 +289,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(1)
         }
         
-        let huanKuanContai = UIView()//(frame: CGRect(x: 10, y: horiLine4.frame.maxY + 10, width: (container.frame.width - 30) / 2, height: 80))
+        let huanKuanContai = UIView()
         huanKuanContai.layer.borderColor = UIColor.theme.cgColor
         huanKuanContai.layer.borderWidth = 1
         huanKuanContai.layer.cornerRadius = 5
@@ -303,7 +303,7 @@ class BorrowDetailVC: BaseController {
             make.bottom.equalTo(-20)
         }
         
-        let hkTip = UILabel()//(frame: CGRect(x: 0, y: 10, width: huanKuanContai.frame.width, height: 20))
+        let hkTip = UILabel()
         hkTip.text = "还款金额"
         hkTip.font = UIFont.systemFont(ofSize: 16)
         hkTip.textAlignment = .center
@@ -314,7 +314,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let hkMoney = UILabel()//(frame: CGRect(x: 0, y: hkTip.frame.maxY + 5, width: huanKuanContai.frame.width, height: 20))
+        let hkMoney = UILabel()
         hkMoney.text = (dataSource?.repaymentAllMoney.description ?? "")+"元"
         hkMoney.textAlignment = .center
         hkMoney.font = UIFont.systemFont(ofSize: 15)
@@ -326,7 +326,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let hkDes = UILabel()//(frame: CGRect(x: 0, y: hkMoney.frame.maxY, width: huanKuanContai.frame.width, height: 20))
+        let hkDes = UILabel()
         hkDes.text = "(包含利息"+(dataSource?.interest.description ?? "")+"元)"
         hkDes.textAlignment = .center
         hkDes.font = UIFont.systemFont(ofSize: 14)
@@ -339,7 +339,7 @@ class BorrowDetailVC: BaseController {
         }
         
         
-        let riQiContai = UIView()//(frame: CGRect(x: huanKuanContai.frame.maxX + 10, y: horiLine4.frame.maxY + 10, width: (container.frame.width - 30) / 2, height: 80))
+        let riQiContai = UIView()
         riQiContai.layer.borderColor = UIColor.theme.cgColor
         riQiContai.layer.borderWidth = 1
         riQiContai.layer.cornerRadius = 5
@@ -351,7 +351,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(80)
         }
         
-        let dateTip = UILabel()//(frame: CGRect(x: 0, y: 10, width: riQiContai.frame.width, height: 20))
+        let dateTip = UILabel()
         dateTip.text = "还款日期"
         dateTip.font = UIFont.systemFont(ofSize: 16)
         dateTip.textAlignment = .center
@@ -362,7 +362,7 @@ class BorrowDetailVC: BaseController {
             make.height.equalTo(20)
         }
         
-        let date = UILabel()//(frame: CGRect(x: 0, y: dateTip.frame.maxY + 15, width: riQiContai.frame.width, height: 20))
+        let date = UILabel()
         date.text = dataSource?.repaymentTime
         date.font = UIFont.systemFont(ofSize: 15)
         date.textAlignment = .center
@@ -421,8 +421,8 @@ class BorrowDetailVC: BaseController {
 
         startAnimating(type: NVActivityIndicatorType.ballTrianglePath, color: UIColor.theme)
         let param : Parameters = [
-            "userId":"1",
-            "projectId":"1",
+            "userId":UserDefaults.standard.object(forKey: MemberIdKey) ?? "",
+            "projectId":id ?? "",
             "cardId":dataSource?.cardId ?? "",
             "access_token":UserDefaults.standard.object(forKey: TokenKey) ?? "",
             "timestamp":Date.timeIntervalBetween1970AndReferenceDate
@@ -435,6 +435,5 @@ class BorrowDetailVC: BaseController {
         }
         
     }
-    
     
 }
