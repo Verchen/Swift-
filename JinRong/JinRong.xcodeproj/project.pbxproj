@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		164378921F413B8A00322BAB /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164378911F413B8A00322BAB /* avatar@2x.png */; };
 		164654451F25E31200F9FA8A /* URLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164654441F25E31200F9FA8A /* URLString.swift */; };
 		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
 		167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8391F2099B7006A6B9D /* SMSButton.swift */; };
@@ -102,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		164378911F413B8A00322BAB /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar@2x.png"; sourceTree = "<group>"; };
 		164654441F25E31200F9FA8A /* URLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLString.swift; sourceTree = "<group>"; };
 		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
 		167BA8391F2099B7006A6B9D /* SMSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSButton.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		1699F87E1F18CCB8004C0B66 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				164378911F413B8A00322BAB /* avatar@2x.png */,
 				167BA8591F219540006A6B9D /* backpack@2x.png */,
 				167BA85A1F219540006A6B9D /* password_icon@2x.png */,
 				167BA85B1F219540006A6B9D /* wo_set@2x.png */,
@@ -714,6 +717,7 @@
 				167BA85E1F219540006A6B9D /* wo_set@2x.png in Resources */,
 				16ECD2F61F1EF1DC00F39B0F /* placeholder@2x.png in Resources */,
 				167BA85D1F219540006A6B9D /* password_icon@2x.png in Resources */,
+				164378921F413B8A00322BAB /* avatar@2x.png in Resources */,
 				167BA84E1F20C861006A6B9D /* kexuan@2x.png in Resources */,
 				16BBF6961F26F04300BCC78C /* applySucess@2x.png in Resources */,
 				167BA8581F20CB1F006A6B9D /* jd@2x.png in Resources */,

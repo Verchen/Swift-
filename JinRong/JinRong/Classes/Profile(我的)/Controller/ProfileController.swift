@@ -93,8 +93,8 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         let avator = UIImageView(frame: CGRect.init(x: 20, y: 20, width: 80, height: 80))
         avator.layer.cornerRadius = 40
         avator.clipsToBounds = true
-        avator.image = #imageLiteral(resourceName: "placeholder.png")
-        avator.layer.borderColor = UIColor.theme.cgColor
+        avator.image = #imageLiteral(resourceName: "avatar.png")
+        avator.layer.borderColor = UIColor.white.cgColor
         avator.layer.borderWidth = 2
         header.addSubview(avator)
         
