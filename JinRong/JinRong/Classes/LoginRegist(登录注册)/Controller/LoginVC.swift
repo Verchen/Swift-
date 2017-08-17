@@ -92,9 +92,9 @@ class LoginVC: BaseController, UIScrollViewDelegate {
         }
         adImage.snp.makeConstraints { (make) in
             make.top.equalTo(regist.snp.bottom).offset(20)
-            make.width.equalTo(UIScreen.main.bounds.width - 40)
-            make.height.equalTo(200)
-            make.bottom.equalTo(-30)
+//            make.width.equalTo(UIScreen.main.bounds.width - 40)
+//            make.height.equalTo(200)
+//            make.bottom.equalTo(-30)
             make.centerX.equalTo(scrollView)
         }
         
@@ -140,6 +140,9 @@ class LoginVC: BaseController, UIScrollViewDelegate {
     }
     func forgetClick() -> Void {
         navigationController?.pushViewController(ForgetVC(), animated: true)
+    }
+    func adBannerClick() -> Void {
+        HUD.flash(.labeledSuccess(title: "查看大额贷", subtitle: nil), delay: 1)
     }
     
     //MARK: - 懒加载
@@ -211,7 +214,10 @@ class LoginVC: BaseController, UIScrollViewDelegate {
     
     lazy var adImage: UIImageView = {
         let ad = UIImageView()
-        ad.image = #imageLiteral(resourceName: "placeholder.png")
+        ad.image = #imageLiteral(resourceName: "jyd_ad_banner.png")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(LoginVC.adBannerClick))
+        ad.addGestureRecognizer(tap)
+        ad.isUserInteractionEnabled = true
         return ad
     }()
 

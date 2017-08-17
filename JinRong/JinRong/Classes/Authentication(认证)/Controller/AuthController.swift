@@ -8,8 +8,18 @@
 
 import UIKit
 import Contacts
+import PKHUD
 
-class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource, BasicCellDelegate {
+let kLLOidPartner = "201408071000001543"
+let kLLPartnerKey = "201408071000001543test_20140812"
+let signType = "MD5"
+let userId = "10001"
+let cardNumber = "6216616009000541907"
+let acctName = "乔伟成"
+let idNumber = "370911199209254419"
+
+
+class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource, BasicCellDelegate, LLPaySdkDelegate {
     
     lazy var tableView: UITableView = {
         var table = UITableView(frame: CGRect.zero, style: .grouped)
@@ -17,11 +27,16 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         table.dataSource = self
         return table
     }()
+    
+    var order: LLOrder?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         layoutSubviews()
+        
+        LLPayConfig();
     }
     
     
@@ -80,9 +95,10 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         tableView .deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            navigationController?.pushViewController(UIViewController(), animated: true)
+//            navigationController?.pushViewController(UIViewController(), animated: true)
+            pay()
         case 1:
-            navigationController?.pushViewController(UIViewController(), animated: true)
+            navigationController?.pushViewController(EmailAuthVC(), animated: true)
         case 2:
             queryABAuth()
         case 3:
@@ -147,12 +163,72 @@ class AuthController: BaseController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    /// 连连支付代理回调
+    func paymentEnd(_ resultCode: LLPayResult, withResultDic dic: [AnyHashable : Any]!) {
+        var msg = "异常"
+        switch resultCode {
+        case kLLPayResultSuccess:
+            msg = "支付成功"
+        case kLLPayResultFail:
+            msg = "支付失败"
+        case kLLPayResultCancel:
+            msg = "支付取消"
+        case kLLPayResultInitError:
+            msg = "sdk初始化异常"
+        case kLLPayResultInitParamError:
+            msg = "支付订单参数有误，无法进行初始化，未传必要信息"
+        default:
+            msg = (dic! as NSDictionary).object(forKey: "ret_msg") as! String
+        }
+        
+        let alert = UIAlertController(title: "支付结果", message: msg.appending(LLPayUtil.jsonString(ofObj: dic)), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     //MARK: - 私有方法
     
     func layoutSubviews() -> Void {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view).inset(UIEdgeInsetsMake(0, 0, 49, 0))
         }
+    }
+
+    /// 连连支付配置
+    func LLPayConfig() -> Void {
+        order = LLOrder(llPayType: 1)
+        guard let llorder = order else { return  }
+        
+        let timeStamp = LLOrder.timeStamp()
+        llorder.oid_partner = kLLOidPartner
+        llorder.sign_type = signType
+        llorder.busi_partner = "101001"
+        llorder.no_order = "LL"+(timeStamp ?? "")
+        llorder.dt_order = timeStamp
+        llorder.money_order = "0.01"
+        llorder.notify_url = "https://yintong.com.cn"
+        llorder.acct_name = acctName
+        llorder.card_no = cardNumber
+        llorder.id_no = idNumber
+        llorder.risk_item = LLOrder.llJsonString(ofObj: ["user_info_dt_register" : "20131030122130"])
+        llorder.user_id = userId
+        llorder.name_goods = "商品名"
+
+    }
+    
+    func pay() -> Void {
+        guard let llorder = order else { return  }
+        let orderDic = llorder.tradeInfoForPayment()
+        let payUtil = LLPayUtil()
+        
+        //进行签名
+        let signedOrder = payUtil.signedOrderDic(orderDic, andSignKey: kLLPartnerKey)
+        
+        LLPaySdk.shared().sdkDelegate = self
+        LLPaySdk.shared().present(in: self, with: LLPayType.init(rawValue: 1)!, andTraderInfo: signedOrder)
+        
+        
     }
     
     /// 获取通讯录权限

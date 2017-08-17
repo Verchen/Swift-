@@ -141,7 +141,7 @@ class RegistVC: BaseController, UIScrollViewDelegate {
     
     lazy var logo: UIImageView = {
         let lg = UIImageView()
-        lg.image = #imageLiteral(resourceName: "placeholder.png")
+        lg.image = #imageLiteral(resourceName: "icon")
         return lg
     }()
     

@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		164378921F413B8A00322BAB /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 164378911F413B8A00322BAB /* avatar@2x.png */; };
+		164378941F444C4900322BAB /* EmailAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164378931F444C4900322BAB /* EmailAuthVC.swift */; };
+		1643789D1F459ECE00322BAB /* jyd_ad_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1643789C1F459ECE00322BAB /* jyd_ad_banner@2x.png */; };
+		164378AA1F45D02B00322BAB /* libRsaCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 164378A61F45D02B00322BAB /* libRsaCrypto.a */; };
+		164378AB1F45D02B00322BAB /* LLPayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 164378A81F45D02B00322BAB /* LLPayUtil.m */; };
+		164378AC1F45D02B00322BAB /* 集成加密库请读.txt in Resources */ = {isa = PBXBuildFile; fileRef = 164378A91F45D02B00322BAB /* 集成加密库请读.txt */; };
+		164378AF1F45D04600322BAB /* LLOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 164378AE1F45D04600322BAB /* LLOrder.m */; };
 		164654451F25E31200F9FA8A /* URLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164654441F25E31200F9FA8A /* URLString.swift */; };
 		167BA8381F1F687A006A6B9D /* DottedBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8371F1F687A006A6B9D /* DottedBoardView.swift */; };
 		167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167BA8391F2099B7006A6B9D /* SMSButton.swift */; };
@@ -104,6 +110,15 @@
 
 /* Begin PBXFileReference section */
 		164378911F413B8A00322BAB /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar@2x.png"; sourceTree = "<group>"; };
+		164378931F444C4900322BAB /* EmailAuthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailAuthVC.swift; sourceTree = "<group>"; };
+		1643789C1F459ECE00322BAB /* jyd_ad_banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jyd_ad_banner@2x.png"; sourceTree = "<group>"; };
+		164378A31F45CF9400322BAB /* JinRong-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JinRong-Bridging-Header.h"; sourceTree = "<group>"; };
+		164378A61F45D02B00322BAB /* libRsaCrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRsaCrypto.a; sourceTree = "<group>"; };
+		164378A71F45D02B00322BAB /* LLPayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPayUtil.h; sourceTree = "<group>"; };
+		164378A81F45D02B00322BAB /* LLPayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPayUtil.m; sourceTree = "<group>"; };
+		164378A91F45D02B00322BAB /* 集成加密库请读.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "集成加密库请读.txt"; sourceTree = "<group>"; };
+		164378AD1F45D04600322BAB /* LLOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLOrder.h; sourceTree = "<group>"; };
+		164378AE1F45D04600322BAB /* LLOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLOrder.m; sourceTree = "<group>"; };
 		164654441F25E31200F9FA8A /* URLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLString.swift; sourceTree = "<group>"; };
 		167BA8371F1F687A006A6B9D /* DottedBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DottedBoardView.swift; sourceTree = "<group>"; };
 		167BA8391F2099B7006A6B9D /* SMSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSButton.swift; sourceTree = "<group>"; };
@@ -199,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				643A98E565BD6CBD70038D30 /* Pods_JinRong.framework in Frameworks */,
+				164378AA1F45D02B00322BAB /* libRsaCrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +237,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1643789B1F459EB100322BAB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1643789C1F459ECE00322BAB /* jyd_ad_banner@2x.png */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		164378A41F45D01300322BAB /* LLPayTools */ = {
+			isa = PBXGroup;
+			children = (
+				164378AD1F45D04600322BAB /* LLOrder.h */,
+				164378AE1F45D04600322BAB /* LLOrder.m */,
+				164378A51F45D02B00322BAB /* LLPayUtils */,
+			);
+			path = LLPayTools;
+			sourceTree = "<group>";
+		};
+		164378A51F45D02B00322BAB /* LLPayUtils */ = {
+			isa = PBXGroup;
+			children = (
+				164378A61F45D02B00322BAB /* libRsaCrypto.a */,
+				164378A71F45D02B00322BAB /* LLPayUtil.h */,
+				164378A81F45D02B00322BAB /* LLPayUtil.m */,
+				164378A91F45D02B00322BAB /* 集成加密库请读.txt */,
+			);
+			path = LLPayUtils;
+			sourceTree = "<group>";
+		};
 		1699F8051F160424004C0B66 = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +356,7 @@
 				16ECD2E61F1D9FF300F39B0F /* IdentityAuthVC.swift */,
 				1699F8971F1C5C58004C0B66 /* JDAuthVC.swift */,
 				16ECD2E01F1CA22B00F39B0F /* JDAuthResultVC.swift */,
+				164378931F444C4900322BAB /* EmailAuthVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -415,6 +461,7 @@
 		1699F84C1F160C7B004C0B66 /* LoginRegist(登录注册) */ = {
 			isa = PBXGroup;
 			children = (
+				1643789B1F459EB100322BAB /* Sources */,
 				1699F84D1F160C7B004C0B66 /* Controller */,
 				1699F84E1F160C7B004C0B66 /* Model */,
 				1699F84F1F160C7B004C0B66 /* View */,
@@ -454,6 +501,7 @@
 				1699F8611F160FEE004C0B66 /* BaseNavigationController.swift */,
 				1699F8571F160D56004C0B66 /* BaseController.swift */,
 				16BBF6A41F287A1300BCC78C /* UserAccount.swift */,
+				164378A31F45CF9400322BAB /* JinRong-Bridging-Header.h */,
 			);
 			path = "Main(主控制器)";
 			sourceTree = "<group>";
@@ -515,6 +563,7 @@
 		1699F8651F162979004C0B66 /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				164378A41F45D01300322BAB /* LLPayTools */,
 			);
 			path = "Vender(第三方)";
 			sourceTree = "<group>";
@@ -665,6 +714,7 @@
 					1699F80D1F160424004C0B66 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = ZY88EWA94M;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					1699F8211F160424004C0B66 = {
@@ -727,10 +777,12 @@
 				167BA84A1F20C5A7006A6B9D /* shenfen@2x.png in Resources */,
 				1699F8911F1B6E38004C0B66 /* agree_normal@2x.png in Resources */,
 				1699F8921F1B6E38004C0B66 /* agree_select@2x.png in Resources */,
+				1643789D1F459ECE00322BAB /* jyd_ad_banner@2x.png in Resources */,
 				167BA8541F20CA2A006A6B9D /* zd_icon@2x.png in Resources */,
 				167BA8401F20C01C006A6B9D /* lock_open@2x.png in Resources */,
 				1699F8821F18D31B004C0B66 /* icon_setting@2x.png in Resources */,
 				167BA8521F20C94A006A6B9D /* zhima@2x.png in Resources */,
+				164378AC1F45D02B00322BAB /* 集成加密库请读.txt in Resources */,
 				16ECD2EC1F1DAE1500F39B0F /* add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,6 +971,7 @@
 				1699F85E1F160F9A004C0B66 /* BorrowController.swift in Sources */,
 				16ECD2E91F1DA1F700F39B0F /* ContactsCell.swift in Sources */,
 				1699F8121F160424004C0B66 /* AppDelegate.swift in Sources */,
+				164378941F444C4900322BAB /* EmailAuthVC.swift in Sources */,
 				167BA83A1F2099B7006A6B9D /* SMSButton.swift in Sources */,
 				1699F8941F1B8A95004C0B66 /* ApplyVC.swift in Sources */,
 				1699F8751F1778B8004C0B66 /* BasicInfoCell.swift in Sources */,
@@ -933,8 +986,10 @@
 				1699F87B1F189FB5004C0B66 /* BillCell.swift in Sources */,
 				1699F8731F1760F9004C0B66 /* ProgressCell.swift in Sources */,
 				1699F8771F177A06004C0B66 /* UIButton(extension).swift in Sources */,
+				164378AF1F45D04600322BAB /* LLOrder.m in Sources */,
 				16BBF69F1F27145800BCC78C /* ProgressModel.swift in Sources */,
 				16BBF6A11F271FF800BCC78C /* ContactsModel.swift in Sources */,
+				164378AB1F45D02B00322BAB /* LLPayUtil.m in Sources */,
 				16BBF6A91F2881AE00BCC78C /* UpdatePasswordVC.swift in Sources */,
 				16BBF6A51F287A1300BCC78C /* UserAccount.swift in Sources */,
 				1699F86B1F162E5F004C0B66 /* UIImage(Extension).swift in Sources */,
@@ -1085,14 +1140,21 @@
 			baseConfigurationReference = 80E5489C48DADBAACF184608 /* Pods-JinRong.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = ZY88EWA94M;
 				INFOPLIST_FILE = JinRong/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JinRong/Classes/Vender(第三方)/LLPayTools/LLPayUtils",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiayidai.boxuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/qiao/Desktop/Swift-Project/JinRong/JinRong/Classes/Main(主控制器)/JinRong-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1102,14 +1164,20 @@
 			baseConfigurationReference = 2537D79DAE90681DB8689C49 /* Pods-JinRong.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = ZY88EWA94M;
 				INFOPLIST_FILE = JinRong/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JinRong/Classes/Vender(第三方)/LLPayTools/LLPayUtils",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiayidai.boxuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/qiao/Desktop/Swift-Project/JinRong/JinRong/Classes/Main(主控制器)/JinRong-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

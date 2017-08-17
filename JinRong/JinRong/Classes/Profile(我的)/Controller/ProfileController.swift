@@ -102,6 +102,8 @@ class ProfileController: BaseController, UITableViewDelegate, UITableViewDataSou
         name.font = UIFont.systemFont(ofSize: 20)
         if let nameT = UserAccount.sharedInstance.phone {
             name.text = nameT
+        } else {
+            name.text = "未登录"
         }
         name.textColor = UIColor.white
         header.addSubview(name)
